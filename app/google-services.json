@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "37290313887",
+    "firebase_url": "https://quranhub.firebaseio.com",
+    "project_id": "quranhub",
+    "storage_bucket": "quranhub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37290313887:android:99ce31802f56215e26faaa",
+        "android_client_info": {
+          "package_name": "app.quranhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37290313887-4lueftahha9od0qe4rsrsmlh53r2qroh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.quranhub",
+            "certificate_hash": "84d9bf930f29bc5c8b8a7bef297a575702e16eab"
+          }
+        },
+        {
+          "client_id": "37290313887-oi685vphrm41fut8v8hk4ljsiorbp4nl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARZIOBDH6gCm6suLZx_iYW14pWXNXP14Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "37290313887-oi685vphrm41fut8v8hk4ljsiorbp4nl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
