@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <!--
+        Default (English)
+    -->
 
-    <string name="app_name">QuranHub</string>
+    <string name="app_name">Quran</string>
+    <string name="quranhub" translatable="false">QuranHub</string>
     <string name="fehris_menu">Sura and Juz\' Index</string>
     <string name="topics_menu">Topics</string>
     <string name="library_menu">Library</string>
