@@ -579,4 +579,6 @@
     <string name="delete">Delete</string>
     <string name="tooltip_page_dir">Whether the current Quran page is left or right in the Mushaf.</string>
 
+    <string name="fcm_notification_channel_id" translatable="false">FCM_NOTIFS</string>
+
 </resources>
