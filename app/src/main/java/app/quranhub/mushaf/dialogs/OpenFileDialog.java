@@ -35,7 +35,7 @@ public class OpenFileDialog extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         dialogView = inflater.inflate(R.layout.dialog_open_file, null);
         ButterKnife.bind(this, dialogView);
-        intializeDialog();
+        initializeDialog();
         return dialog;
     }
 
@@ -52,8 +52,8 @@ public class OpenFileDialog extends DialogFragment {
         listener.onOpefFile(OUT_APP);
     }
 
-    private void intializeDialog() {
-        dialog = new Dialog(Objects.requireNonNull(getActivity()));
+    private void initializeDialog() {
+        dialog = new Dialog(requireActivity());
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(dialogView);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);

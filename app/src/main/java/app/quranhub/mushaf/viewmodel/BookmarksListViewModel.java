@@ -64,7 +64,6 @@ public class BookmarksListViewModel extends AndroidViewModel {
      * @param listener
      */
     @SuppressLint("StaticFieldLeak")
-    @SuppressWarnings("unchecked")
     public void bookmarksMapper(@NonNull List<DisplayableBookmark> ayaBookmarks
             , @NonNull BookmarkMapperListener listener) {
 

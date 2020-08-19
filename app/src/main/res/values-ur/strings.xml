@@ -31,7 +31,7 @@
     <string name="guz2_index">پاروں کی فہرست</string>
     <string name="sura_index">سورتوں کی فہرست</string>
     <string name="page_num">صفحہ %s</string>
-    <string name="ayas_num">c</string>
+    <string name="ayas_num">آیه %s</string>
     <string name="aya_rob3">چوتھائی %s</string>
     <string name="aya_hezb">حزب %s</string>
     <string name="aya_goz2">پارہ %s</string>
