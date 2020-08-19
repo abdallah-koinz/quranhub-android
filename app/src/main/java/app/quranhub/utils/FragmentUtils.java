@@ -3,9 +3,9 @@ package app.quranhub.utils;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-public final class FragmentUtil {
+public final class FragmentUtils {
 
-    private FragmentUtil() { /* prevent instantiation */}
+    private FragmentUtils() { /* prevent instantiation */}
 
     /**
      * Check if fragment is active and is safe to do actions with.

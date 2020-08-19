@@ -30,13 +30,13 @@ import app.quranhub.mushaf.fragments.TopicAyasFragment;
 import app.quranhub.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.mushaf.model.TopicCategory;
 import app.quranhub.settings.SettingsActivity;
-import app.quranhub.utils.DrawerUtil;
-import app.quranhub.utils.PreferencesUtils;
-import app.quranhub.utils.SharedPrefsUtil;
+import app.quranhub.utils.DrawerUtils;
+import app.quranhub.utils.SharedPrefsUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import app.quranhub.utils.interfaces.ToolbarActionsListener;
 
 public class MainActivity extends BaseActivity
-        implements ToolbarActionsListener, DrawerUtil.Mus7afDrawerItemClickListener, QuranNavigationCallbacks {
+        implements ToolbarActionsListener, DrawerUtils.Mus7afDrawerItemClickListener, QuranNavigationCallbacks {
 
     private Drawer drawer;
     private String currentFragment;
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         // Redirect to `FirstTimeWizardActivity` if not already done
-        if (!PreferencesUtils.isFirstTimeWizardDone(this)) {
+        if (!UserPreferencesUtils.isFirstTimeWizardDone(this)) {
             Intent intent = new Intent(this, FirstTimeWizardActivity.class);
             startActivity(intent);
             finish();
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity
 
         setContentView(R.layout.activity_main);
         observeOnDrawerOpen();
-        drawer = DrawerUtil.initDrawer(this, savedInstanceState, onDrawerListener);
+        drawer = DrawerUtils.initDrawer(this, savedInstanceState, onDrawerListener);
         if (savedInstanceState == null) {
             launchMushafFragment();
         } else {
@@ -124,11 +124,11 @@ public class MainActivity extends BaseActivity
         MushafFragment mushafFragment;
 
         // get current aya id if Main activity is launched from audio notification OR launch app with audio notification app
-        if ((getIntent().getExtras() != null && getIntent().getExtras().getBoolean(AyaAudioService.FROM_NOTIFICATION)) || SharedPrefsUtil.getBoolean(this, AyaAudioService.SERVICE_RUNNING, false)) {
-            int ayaId = SharedPrefsUtil.getInteger(this, AyaAudioService.AYA_ID_KEY, 1);
+        if ((getIntent().getExtras() != null && getIntent().getExtras().getBoolean(AyaAudioService.FROM_NOTIFICATION)) || SharedPrefsUtils.getBoolean(this, AyaAudioService.SERVICE_RUNNING, false)) {
+            int ayaId = SharedPrefsUtils.getInteger(this, AyaAudioService.AYA_ID_KEY, 1);
             mushafFragment = MushafFragment.newNotificationInstance(ayaId);
-        } else if (PreferencesUtils.getLastReadPageSetting(this)) {
-            int pageNumber = Constants.QURAN.NUM_OF_PAGES - SharedPrefsUtil.getInteger(this
+        } else if (UserPreferencesUtils.getLastReadPageSetting(this)) {
+            int pageNumber = Constants.QURAN.NUM_OF_PAGES - SharedPrefsUtils.getInteger(this
                     , "last_open_page", Constants.QURAN.NUM_OF_PAGES - 1);
             mushafFragment = MushafFragment.newInstance(pageNumber);
         } else {
@@ -146,8 +146,8 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if ((getIntent().getExtras() != null && getIntent().getExtras().getBoolean(AyaAudioService.FROM_NOTIFICATION)) || SharedPrefsUtil.getBoolean(this, AyaAudioService.SERVICE_RUNNING, false)) {
-            int ayaId = SharedPrefsUtil.getInteger(this, AyaAudioService.AYA_ID_KEY, 1);
+        if ((getIntent().getExtras() != null && getIntent().getExtras().getBoolean(AyaAudioService.FROM_NOTIFICATION)) || SharedPrefsUtils.getBoolean(this, AyaAudioService.SERVICE_RUNNING, false)) {
+            int ayaId = SharedPrefsUtils.getInteger(this, AyaAudioService.AYA_ID_KEY, 1);
             MushafFragment mushafFragment = MushafFragment.newNotificationInstance(ayaId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.container, mushafFragment, "Mushaf");
@@ -164,19 +164,19 @@ public class MainActivity extends BaseActivity
     @Override
     public void onSuraClick() {
         openIndex(SuraGuz2IndexFragment.SURA_INDEX_TAB);
-        selectNavDrawerItem(DrawerUtil.IDENTIFIER_INDEX, false);
+        selectNavDrawerItem(DrawerUtils.IDENTIFIER_INDEX, false);
     }
 
     @Override
     public void onGuz2Click() {
         openIndex(SuraGuz2IndexFragment.GUZ2_INDEX_TAB);
-        selectNavDrawerItem(DrawerUtil.IDENTIFIER_INDEX, false);
+        selectNavDrawerItem(DrawerUtils.IDENTIFIER_INDEX, false);
     }
 
     @Override
     public void onBookmarkClick() {
         openBookmarks();
-        selectNavDrawerItem(DrawerUtil.IDENTIFIER_BOOKMARKS, false);
+        selectNavDrawerItem(DrawerUtils.IDENTIFIER_BOOKMARKS, false);
     }
 
     @Override
@@ -202,7 +202,7 @@ public class MainActivity extends BaseActivity
 
 
     private void backToMushaf() {
-        int lastOpenedPage = Constants.QURAN.NUM_OF_PAGES - SharedPrefsUtil.getInteger(this
+        int lastOpenedPage = Constants.QURAN.NUM_OF_PAGES - SharedPrefsUtils.getInteger(this
                 , "last_open_page", Constants.QURAN.NUM_OF_PAGES - 1);
         currentFragment = "mushaf";
         gotoQuranPage(lastOpenedPage);
@@ -347,7 +347,7 @@ public class MainActivity extends BaseActivity
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, mushafFragment, "Mushaf");
         transaction.commit();
-        selectNavDrawerItem(DrawerUtil.IDENTIFIER_MUSHAF, false);
+        selectNavDrawerItem(DrawerUtils.IDENTIFIER_MUSHAF, false);
     }
 
     @Override
@@ -360,7 +360,7 @@ public class MainActivity extends BaseActivity
             transaction.addToBackStack(null);
         }
         transaction.commit();
-        selectNavDrawerItem(DrawerUtil.IDENTIFIER_MUSHAF, false);
+        selectNavDrawerItem(DrawerUtils.IDENTIFIER_MUSHAF, false);
         currentFragment = "mushaf";
     }
 

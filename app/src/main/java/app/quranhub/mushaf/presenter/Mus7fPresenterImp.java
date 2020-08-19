@@ -16,7 +16,7 @@ import app.quranhub.mushaf.interactor.Mus7fInteractorImp;
 import app.quranhub.mushaf.model.QuranPageInfo;
 import app.quranhub.mushaf.model.SuraVersesNumber;
 import app.quranhub.mushaf.view.MushafView;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 
 public class Mus7fPresenterImp extends BasePresenterImp<MushafView>
         implements Mus7fPresenter<MushafView>, Mus7fInteractor.ResultListener {
@@ -41,12 +41,12 @@ public class Mus7fPresenterImp extends BasePresenterImp<MushafView>
 
     @Override
     public void setNightMode(boolean nightMode) {
-        PreferencesUtils.persistNightModeSetting(context, nightMode);
+        UserPreferencesUtils.persistNightModeSetting(context, nightMode);
     }
 
     @Override
     public boolean getNightMode() {
-        return PreferencesUtils.getNightModeSetting(context);
+        return UserPreferencesUtils.getNightModeSetting(context);
     }
 
     @Override

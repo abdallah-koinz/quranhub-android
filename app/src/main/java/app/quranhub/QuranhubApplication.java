@@ -8,7 +8,7 @@ import androidx.multidex.MultiDexApplication;
 
 import com.downloader.PRDownloader;
 
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 
 public class QuranhubApplication extends MultiDexApplication {
 
@@ -20,7 +20,7 @@ public class QuranhubApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
 
-        LocaleUtil.initAppLanguage(this);
+        LocaleUtils.initAppLanguage(this);
 
         // initialize PRDownloader library (for downloading files)
         PRDownloader.initialize(getApplicationContext());
@@ -34,11 +34,11 @@ public class QuranhubApplication extends MultiDexApplication {
 
         // Android resets the locale for the top level resources back to the device default
         // on every application restart and configuration change.
-        LocaleUtil.initAppLanguage(this);
+        LocaleUtils.initAppLanguage(this);
     }
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LocaleUtil.initAppLanguage(base));
+        super.attachBaseContext(LocaleUtils.initAppLanguage(base));
     }
 }

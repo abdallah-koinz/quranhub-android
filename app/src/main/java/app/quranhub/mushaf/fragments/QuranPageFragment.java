@@ -50,11 +50,11 @@ import app.quranhub.mushaf.presenter.QuranPagePresenter;
 import app.quranhub.mushaf.presenter.QuranPagePresenterImp;
 import app.quranhub.mushaf.utils.ImageUtil;
 import app.quranhub.mushaf.view.QuranPageView;
-import app.quranhub.utils.FragmentUtil;
+import app.quranhub.utils.FragmentUtils;
 import app.quranhub.utils.GlideApp;
-import app.quranhub.utils.IntentUtil;
-import app.quranhub.utils.PreferencesUtils;
-import app.quranhub.utils.ScreenUtil;
+import app.quranhub.utils.IntentUtils;
+import app.quranhub.utils.ScreenUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -169,7 +169,7 @@ public class QuranPageFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setParentFragment();
-        recitationId = PreferencesUtils.getRecitationSetting(requireContext());
+        recitationId = UserPreferencesUtils.getRecitationSetting(requireContext());
         getCurrentPageAyas();
         containerScrollView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -351,7 +351,7 @@ public class QuranPageFragment extends Fragment
         /* the dialog coordinates itself to the window origin,
            instead we want it to coordinate to the quran image origin */
 
-        int yLocation = ScreenUtil.getStatusBarHeight(getActivity(), quranPageIv); // base yLocation
+        int yLocation = ScreenUtils.getStatusBarHeight(getActivity(), quranPageIv); // base yLocation
         int y;
         switch (recitationId) {
             case Constants.RECITATIONS.HAFS_ID:
@@ -456,7 +456,7 @@ public class QuranPageFragment extends Fragment
         }
 
         // handle if lineHeight will be bigger than container lineHeight when above "if" is true
-        if (getContext() != null && ScreenUtil.isPortrait(getContext()) && params.height > quranImageContainerHeight) {
+        if (getContext() != null && ScreenUtils.isPortrait(getContext()) && params.height > quranImageContainerHeight) {
             Log.d(TAG, "TRUE: portrait && params.lineHeight > quranImageContainerHeight");
             float ratioEdit = (float) quranImageContainerHeight / params.height;
             imageScaleFactor *= ratioEdit; // the total scale done on the image
@@ -479,7 +479,7 @@ public class QuranPageFragment extends Fragment
     @Override
     public void onShareClick() {
         if (currentAya != null) {
-            startActivity(IntentUtil.getShareIntent(currentAya.getText(), getActivity()));
+            startActivity(IntentUtils.getShareIntent(currentAya.getText(), getActivity()));
         }
     }
 
@@ -526,7 +526,7 @@ public class QuranPageFragment extends Fragment
 
     @Override
     public void onNoteClick() {
-        if (ScreenUtil.getOrientationState(requireActivity()).equals(ScreenUtil.PORTRAIT_STATE)) {
+        if (ScreenUtils.getOrientationState(requireActivity()).equals(ScreenUtils.PORTRAIT_STATE)) {
             openAddNoteDialog();
         } else {
             noteDialogOpen = true;
@@ -746,7 +746,7 @@ public class QuranPageFragment extends Fragment
                             , Target<Drawable> target, boolean isFirstResource) {
 
                         Log.d(TAG, "onLoadFailed: GlideApp");
-                        if (FragmentUtil.isSafeFragment(QuranPageFragment.this)) {
+                        if (FragmentUtils.isSafeFragment(QuranPageFragment.this)) {
                             progressBar.setVisibility(GONE);
                             failedContainer.setVisibility(View.VISIBLE);
                         }
@@ -757,7 +757,7 @@ public class QuranPageFragment extends Fragment
                     public boolean onResourceReady(Drawable resource, Object model
                             , Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
 
-                        if (FragmentUtil.isSafeFragment(QuranPageFragment.this)) {
+                        if (FragmentUtils.isSafeFragment(QuranPageFragment.this)) {
                             progressBar.setVisibility(GONE);
                             failedContainer.setVisibility(GONE);
                             isPageShown = true;
@@ -813,7 +813,7 @@ public class QuranPageFragment extends Fragment
         mushafFragment.togglePauseState(false);
         ayaAudioDownloaded = false;
 
-        String reciterId = PreferencesUtils.getReciterSheikhSetting(requireContext());
+        String reciterId = UserPreferencesUtils.getReciterSheikhSetting(requireContext());
         if (reciterId != null) {
             openDownloadAmountDialog(reciterId);
         } else {

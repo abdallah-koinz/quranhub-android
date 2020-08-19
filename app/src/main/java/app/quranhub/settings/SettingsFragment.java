@@ -19,8 +19,8 @@ import app.quranhub.mushaf.data.entity.Sheikh;
 import app.quranhub.settings.custom.MushafSetting;
 import app.quranhub.settings.custom.MushafSettingSwitch;
 import app.quranhub.settings.dialogs.OptionsListDialogFragment;
-import app.quranhub.utils.LocaleUtil;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.LocaleUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -85,30 +85,30 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
     private void initSettingsViews() {
         // appLangSetting
         int currentAppLanguageIndex = Constants.SUPPORTED_LANGUAGES.CODES.indexOf(
-                PreferencesUtils.getAppLangSetting(requireContext()));
+                UserPreferencesUtils.getAppLangSetting(requireContext()));
         appLangSetting.setCurrentValue(
                 getString(Constants.SUPPORTED_LANGUAGES.NAMES_STR_IDS[currentAppLanguageIndex]));
 
         // translationLangSetting
         int currentTranslationLanguageIndex = Constants.SUPPORTED_LANGUAGES.CODES.indexOf(
-                PreferencesUtils.getQuranTranslationLanguage(requireContext()));
+                UserPreferencesUtils.getQuranTranslationLanguage(requireContext()));
         translationLangSetting.setCurrentValue(
                 getString(Constants.SUPPORTED_LANGUAGES.NAMES_STR_IDS[currentTranslationLanguageIndex]));
 
         // screenReadingBacklightSettingSwitch
         screenReadingBacklightSettingSwitch.setChecked(
-                PreferencesUtils.getScreenReadingBacklightSetting(requireContext()));
+                UserPreferencesUtils.getScreenReadingBacklightSetting(requireContext()));
 
         // lastReadPageSettingSwitch
         lastReadPageSettingSwitch.setChecked(
-                PreferencesUtils.getLastReadPageSetting(requireContext()));
+                UserPreferencesUtils.getLastReadPageSetting(requireContext()));
 
         // recitationSetting
-        int selectedRecitationIndex = PreferencesUtils.getRecitationSetting(requireContext());
+        int selectedRecitationIndex = UserPreferencesUtils.getRecitationSetting(requireContext());
         recitationSetting.setCurrentValue(getString(Constants.RECITATIONS.NAMES_STR_IDS[selectedRecitationIndex]));
 
         // quranReaderSetting
-        String reciterId = PreferencesUtils.getReciterSheikhSetting(requireContext());
+        String reciterId = UserPreferencesUtils.getReciterSheikhSetting(requireContext());
         if (reciterId != null) {
             quranReaderSetting.setCurrentValue(Sheikh.getLocalizedName(requireContext(), reciterId));
         }
@@ -119,7 +119,7 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
         appLangSetting.setOnClickListener(v -> {
             // TODO apply MVP or MVVM
             int currentAppLanguageIndex = Constants.SUPPORTED_LANGUAGES.CODES.indexOf(
-                    PreferencesUtils.getAppLangSetting(requireContext()));
+                    UserPreferencesUtils.getAppLangSetting(requireContext()));
             OptionsListDialogFragment appLangDialog = OptionsListDialogFragment.getInstance(
                     getString(R.string.app_lang_setting_dialog_title),
                     Constants.SUPPORTED_LANGUAGES.NAMES_STR_IDS,
@@ -132,7 +132,7 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
         translationLangSetting.setOnClickListener(v -> {
             // TODO apply MVP or MVVM
             int currentTranslationLanguageIndex = Constants.SUPPORTED_LANGUAGES.CODES.indexOf(
-                    PreferencesUtils.getQuranTranslationLanguage(requireContext()));
+                    UserPreferencesUtils.getQuranTranslationLanguage(requireContext()));
             OptionsListDialogFragment translationLangDialog = OptionsListDialogFragment.getInstance(
                     getString(R.string.translation_lang_setting_dialog_title),
                     Constants.SUPPORTED_LANGUAGES.NAMES_STR_IDS,
@@ -144,12 +144,12 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
 
         screenReadingBacklightSettingSwitch.setOnCheckedChangeListener((settingSwitch, checked) -> {
             // TODO apply MVP or MVVM
-            PreferencesUtils.persistScreenReadingBacklightSetting(requireContext(), checked);
+            UserPreferencesUtils.persistScreenReadingBacklightSetting(requireContext(), checked);
         });
 
         lastReadPageSettingSwitch.setOnCheckedChangeListener((settingSwitch, checked) -> {
             // TODO apply MVP or MVVM
-            PreferencesUtils.persistLastReadPageSetting(requireContext(), checked);
+            UserPreferencesUtils.persistLastReadPageSetting(requireContext(), checked);
         });
 
         readingWarningsSettingSwitch.setOnCheckedChangeListener((settingSwitch, checked) -> {
@@ -162,7 +162,7 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
 
         recitationSetting.setOnClickListener(v -> {
             // TODO apply MVP or MVVM
-            int selectedRecitationSettingIndex = PreferencesUtils.getRecitationSetting(requireContext());
+            int selectedRecitationSettingIndex = UserPreferencesUtils.getRecitationSetting(requireContext());
             OptionsListDialogFragment recitationDialog = OptionsListDialogFragment.getInstance(
                     getResources().getString(R.string.recitation_setting_dialog_title),
                     Constants.RECITATIONS.NAMES_STR_IDS, selectedRecitationSettingIndex
@@ -172,8 +172,8 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
 
         quranReaderSetting.setOnClickListener(v -> {
             // TODO apply MVP or MVVM
-            int recitationId = PreferencesUtils.getRecitationSetting(requireContext());
-            String reciterId = PreferencesUtils.getReciterSheikhSetting(requireContext());
+            int recitationId = UserPreferencesUtils.getRecitationSetting(requireContext());
+            String reciterId = UserPreferencesUtils.getReciterSheikhSetting(requireContext());
             QuranRecitersDialogFragment recitersDialog = QuranRecitersDialogFragment
                     .newInstance(recitationId, reciterId);
             recitersDialog.show(getChildFragmentManager(), "QuranRecitersDialogFragment");
@@ -202,12 +202,12 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
         switch (requestCode) {
             case RC_APP_LANG_SETTING:
                 int currentAppLanguageIndex = Constants.SUPPORTED_LANGUAGES.CODES.indexOf(
-                        PreferencesUtils.getAppLangSetting(requireContext()));
+                        UserPreferencesUtils.getAppLangSetting(requireContext()));
                 if (itemIndex != currentAppLanguageIndex) {
                     // save user setting & change app language
                     String langCode = Constants.SUPPORTED_LANGUAGES.CODES.get(itemIndex);
-                    PreferencesUtils.persistAppLangSetting(requireContext(), langCode);
-                    LocaleUtil.setAppLanguage(requireContext(), langCode);
+                    UserPreferencesUtils.persistAppLangSetting(requireContext(), langCode);
+                    LocaleUtils.setAppLanguage(requireContext(), langCode);
 
                     ((BaseActivity) requireActivity()).restart();
                 }
@@ -215,13 +215,13 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
             case RC_TRANS_LANG_SETTING:
                 // save user setting & change translation language
                 String langCode = Constants.SUPPORTED_LANGUAGES.CODES.get(itemIndex);
-                PreferencesUtils.persistQuranTranslationLanguage(requireContext(), langCode);
+                UserPreferencesUtils.persistQuranTranslationLanguage(requireContext(), langCode);
                 translationLangSetting.setCurrentValue(
                         getString(Constants.SUPPORTED_LANGUAGES.NAMES_STR_IDS[itemIndex]));
                 break;
             case RC_RECITATION_SETTING:
                 int selectedRecitationId = itemIndex;
-                boolean isChanged = PreferencesUtils.persistRecitationSetting(requireContext(), selectedRecitationId);
+                boolean isChanged = UserPreferencesUtils.persistRecitationSetting(requireContext(), selectedRecitationId);
                 if (isChanged) {
                     // update the current recitation setting & reset quran reader setting
                     recitationSetting.setCurrentValue(
@@ -239,7 +239,7 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
     public void onReciterSelected(int recitationId, @NonNull Sheikh reciter) {
         Log.d(TAG, "onReciterSelected: recitationId=" + recitationId + " , reciterId=" + reciter.getId());
 
-        PreferencesUtils.persistReciterSheikhSetting(requireContext(), reciter.getId());
+        UserPreferencesUtils.persistReciterSheikhSetting(requireContext(), reciter.getId());
         quranReaderSetting.setCurrentValue(reciter.getLocalizedName(requireContext()));
     }
 }

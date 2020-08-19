@@ -4,13 +4,12 @@ import android.media.MediaPlayer;
 
 import java.io.IOException;
 
-public class AyaAudioUtil {
+public class AyaAudioHelper {
 
     private MediaPlayer mediaPlayer;
     private AudioStateCallback callback;
 
-
-    public AyaAudioUtil(AudioStateCallback callback) {
+    public AyaAudioHelper(AudioStateCallback callback) {
         this.callback = callback;
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnCompletionListener(mp -> {
@@ -57,13 +56,11 @@ public class AyaAudioUtil {
         }
     }
 
-
     public void pause() {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.pause();
         }
     }
-
 
     public interface AudioStateCallback {
         interface State {
@@ -74,4 +71,5 @@ public class AyaAudioUtil {
 
         void onStateChanged(int state);
     }
+
 }

@@ -11,11 +11,11 @@ import androidx.core.view.ViewCompat;
 
 import java.util.Locale;
 
-public final class LocaleUtil {
+public final class LocaleUtils {
 
-    private static final String TAG = LocaleUtil.class.getSimpleName();
+    private static final String TAG = LocaleUtils.class.getSimpleName();
 
-    private LocaleUtil() { /* prevent instantiation */}
+    private LocaleUtils() { /* prevent instantiation */}
 
     public static String getAppLanguage() {
         return Locale.getDefault().getLanguage();
@@ -43,11 +43,11 @@ public final class LocaleUtil {
 
     @NonNull
     public static Context initAppLanguage(@NonNull Context context) {
-        return setAppLanguage(context, PreferencesUtils.getAppLangSetting(context));
+        return setAppLanguage(context, UserPreferencesUtils.getAppLangSetting(context));
     }
 
     public static String formatNumber(@NonNull String num) {
-        if (LocaleUtil.getAppLanguage().equals("ar")) {
+        if (LocaleUtils.getAppLanguage().equals("ar")) {
             StringBuilder arabicNumber = new StringBuilder();
             char[] numMapper = new char[]{
                     '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'};

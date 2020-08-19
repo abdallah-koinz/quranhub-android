@@ -6,11 +6,11 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-public final class SharedPrefsUtil {
+public final class SharedPrefsUtils {
 
-    private SharedPrefsUtil() { /* prevent instantiation */ }
+    private SharedPrefsUtils() { /* prevent instantiation */ }
 
-    private static final String TAG = SharedPrefsUtil.class.getSimpleName();
+    private static final String TAG = SharedPrefsUtils.class.getSimpleName();
 
     private static final String PREF_FILE_NAME = "mushaf_prefs";
 

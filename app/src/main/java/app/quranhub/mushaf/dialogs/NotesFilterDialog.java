@@ -64,8 +64,8 @@ public class NotesFilterDialog extends DialogFragment implements FilterAdapter.O
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this, DialogUtil.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.8f
-                , DialogUtil.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE, DialogUtil.DIALOG_STD_HEIGHT_SCREEN_RATIO_LANDSCAPE);
+        DialogUtils.adjustDialogSize(this, DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.8f
+                , DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE, DialogUtils.DIALOG_STD_HEIGHT_SCREEN_RATIO_LANDSCAPE);
     }*/
 
 

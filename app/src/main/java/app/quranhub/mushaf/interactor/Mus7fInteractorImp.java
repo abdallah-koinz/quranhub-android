@@ -14,7 +14,7 @@ import app.quranhub.mushaf.data.db.TranslationDatabase;
 import app.quranhub.mushaf.data.db.UserDatabase;
 import app.quranhub.mushaf.data.entity.AyaRecorder;
 import app.quranhub.mushaf.model.SuraVersesNumber;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -163,7 +163,7 @@ public class Mus7fInteractorImp implements Mus7fInteractor {
     @SuppressLint("CheckResult")
     @Override
     public void checkAyaHasRecorder(int id) {
-        int recitation = PreferencesUtils.getRecitationSetting(context);
+        int recitation = UserPreferencesUtils.getRecitationSetting(context);
         userDatabase.getQuranAudioDao().getAyaRecorderPath(id, recitation)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -176,7 +176,7 @@ public class Mus7fInteractorImp implements Mus7fInteractor {
 
     @Override
     public void saveRecorderPath(int ayaId, String recorderPath) {
-        int recitation = PreferencesUtils.getRecitationSetting(context);
+        int recitation = UserPreferencesUtils.getRecitationSetting(context);
         AyaRecorder ayaRecorder = new AyaRecorder(ayaId, recitation, recorderPath);
 
         Completable.fromAction(() ->
@@ -212,7 +212,7 @@ public class Mus7fInteractorImp implements Mus7fInteractor {
 
     @Override
     public void deleteAyaVoiceRecorder(int ayaId) {
-        int recitation = PreferencesUtils.getRecitationSetting(context);
+        int recitation = UserPreferencesUtils.getRecitationSetting(context);
 
         Completable.fromAction(() ->
                 userDatabase.getQuranAudioDao().deleteAyaVoiceRecorder(ayaId, recitation))

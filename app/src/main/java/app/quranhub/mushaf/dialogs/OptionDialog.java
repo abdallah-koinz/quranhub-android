@@ -24,7 +24,7 @@ import java.util.Objects;
 
 import app.quranhub.R;
 import app.quranhub.mushaf.adapter.FilterAdapter;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -94,8 +94,8 @@ public class OptionDialog extends DialogFragment implements FilterAdapter.Option
     public void onResume() {
         super.onResume();
 
-        //DialogUtil.adjustDialogSize(this);
-        DialogUtil.adjustDialogSize(this, 0.8f, 0.7f
+        //DialogUtils.adjustDialogSize(this);
+        DialogUtils.adjustDialogSize(this, 0.8f, 0.7f
                 , 0.5f, 0.9f);
     }
 

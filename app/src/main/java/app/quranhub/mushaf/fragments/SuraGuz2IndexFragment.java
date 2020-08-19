@@ -32,7 +32,7 @@ import app.quranhub.mushaf.presenter.SuraGuz2IndexPresenter;
 import app.quranhub.mushaf.presenter.SuraGuz2IndexPresenterImp;
 import app.quranhub.mushaf.view.SuraGuz2IndexView;
 import app.quranhub.settings.dialogs.OptionsListDialogFragment;
-import app.quranhub.utils.ScreenUtil;
+import app.quranhub.utils.ScreenUtils;
 import app.quranhub.utils.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -249,7 +249,7 @@ public class SuraGuz2IndexFragment extends Fragment implements SuraGuz2IndexView
     }
 
     public void navigateToSelectedSura(int suraPage) {
-        ScreenUtil.dismissKeyboard(getActivity(), searchEt);
+        ScreenUtils.dismissKeyboard(getActivity(), searchEt);
         quranNavigationCallbacks.gotoQuranPage(suraPage);
     }
 

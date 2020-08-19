@@ -11,7 +11,7 @@ import android.widget.PopupWindow;
 import androidx.annotation.NonNull;
 
 import app.quranhub.R;
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -55,7 +55,7 @@ public class AyaAudioPopup {
     }
 
     private void setViewDirections() {
-        if (LocaleUtil.getAppLanguage().equals("ar")) {
+        if (LocaleUtils.getAppLanguage().equals("ar")) {
             prevAyaIv.setImageResource(R.drawable.player_fast_forward_white_ic);
             nextAyaIv.setImageResource(R.drawable.player_fast_rewind_white_ic);
         }

@@ -22,7 +22,7 @@ import app.quranhub.R;
 import app.quranhub.mushaf.presenter.QuranFooterPresenter;
 import app.quranhub.mushaf.presenter.QuranFooterPresenterImp;
 import app.quranhub.mushaf.view.QuranFooterView;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -91,7 +91,7 @@ public class MushafBottomBarFragment extends Fragment implements QuranFooterView
 
         presenter = new QuranFooterPresenterImp();
 
-        nightMode = PreferencesUtils.getNightModeSetting(requireActivity());
+        nightMode = UserPreferencesUtils.getNightModeSetting(requireActivity());
         setupNightModeButton();
 
         rootLinearLayout.setOnTouchListener((v, event) -> {

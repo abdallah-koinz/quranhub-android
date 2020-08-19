@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import app.quranhub.R;
 
-public class IntentUtil {
+public class IntentUtils {
 
     public static Intent getShareIntent(String ayaText, Context context) {
         String shareBody = ayaText + "\n\n" + context.getString(R.string.app_name) + ".";

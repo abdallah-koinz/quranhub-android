@@ -20,7 +20,7 @@ import app.quranhub.downloads_manager.utils.QuranAudioDeleteUtils;
 import app.quranhub.mushaf.data.db.UserDatabase;
 import app.quranhub.mushaf.data.entity.Sheikh;
 import app.quranhub.mushaf.data.entity.SheikhRecitation;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 
 public class DownloadsSurasFragment extends BaseDownloadsFragment
         implements DeleteConfirmationDialogFragment.DeleteConfirmationCallbacks {
@@ -129,9 +129,9 @@ public class DownloadsSurasFragment extends BaseDownloadsFragment
                             .insert(new SheikhRecitation(recitationId, reciterId));
                 }
 
-                int recitationIdPreference = PreferencesUtils.getRecitationSetting(requireContext());
+                int recitationIdPreference = UserPreferencesUtils.getRecitationSetting(requireContext());
                 if (recitationIdPreference == recitationId) {
-                    PreferencesUtils.persistReciterSheikhSetting(requireContext(), reciterId);
+                    UserPreferencesUtils.persistReciterSheikhSetting(requireContext(), reciterId);
                 }
 
                 return null;

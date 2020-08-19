@@ -22,8 +22,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Objects;
-
 import app.quranhub.R;
 import app.quranhub.mushaf.adapter.NotesAdapter;
 import app.quranhub.mushaf.data.entity.Note;
@@ -33,7 +31,7 @@ import app.quranhub.mushaf.listener.ItemSelectionListener;
 import app.quranhub.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.mushaf.model.DisplayedNote;
 import app.quranhub.mushaf.viewmodel.NotesViewModel;
-import app.quranhub.utils.ScreenUtil;
+import app.quranhub.utils.ScreenUtils;
 import app.quranhub.utils.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -163,7 +161,7 @@ public class MyNotesFragment extends Fragment implements NotesAdapter.NoteCallba
 
     @Override
     public void onNavigateToAya(int ayaId, int pageNum) {
-        ScreenUtil.dismissKeyboard(getContext(), searchEt);
+        ScreenUtils.dismissKeyboard(getContext(), searchEt);
         quranNavigationCallbacks.gotoQuranPageAya(pageNum, ayaId, false);
     }
 
@@ -172,7 +170,7 @@ public class MyNotesFragment extends Fragment implements NotesAdapter.NoteCallba
      */
     @Override
     public void onGetNoteDetails(DisplayedNote displayedNote) {
-        if (ScreenUtil.getOrientationState(getActivity()) == ScreenUtil.PORTRAIT_STATE) {
+        if (ScreenUtils.getOrientationState(getActivity()) == ScreenUtils.PORTRAIT_STATE) {
             openAddNoteDialog(displayedNote);
         } else {
             openDialog = true;
@@ -194,7 +192,7 @@ public class MyNotesFragment extends Fragment implements NotesAdapter.NoteCallba
 
     @Override
     public void onAddNote(Note note, boolean isEditable) {
-        Objects.requireNonNull(getActivity()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         Toast.makeText(getActivity(), getString(R.string.note_edited), Toast.LENGTH_LONG).show();
         adapter.updateNoteType(note);
         viewModel.updateNote(note);
@@ -202,7 +200,7 @@ public class MyNotesFragment extends Fragment implements NotesAdapter.NoteCallba
 
     @Override
     public void onDismissDialog() {
-        Objects.requireNonNull(getActivity()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
     }
 
     @OnClick(R.id.edit_btn)

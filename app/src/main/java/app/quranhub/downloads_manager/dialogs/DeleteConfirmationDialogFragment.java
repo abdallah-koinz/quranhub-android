@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import app.quranhub.R;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -119,7 +119,7 @@ public class DeleteConfirmationDialogFragment extends DialogFragment {
     public void onResume() {
         super.onResume();
 
-        DialogUtil.wrapDialogHeight(this);
+        DialogUtils.wrapDialogHeight(this);
     }
 
     @Override

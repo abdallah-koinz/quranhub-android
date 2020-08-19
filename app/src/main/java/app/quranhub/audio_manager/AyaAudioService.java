@@ -33,9 +33,9 @@ import app.quranhub.mushaf.data.db.UserDatabase;
 import app.quranhub.mushaf.model.AyaIdInfo;
 import app.quranhub.mushaf.model.RepeatModel;
 import app.quranhub.mushaf.model.SuraVersesNumber;
-import app.quranhub.utils.LocaleUtil;
-import app.quranhub.utils.PreferencesUtils;
-import app.quranhub.utils.SharedPrefsUtil;
+import app.quranhub.utils.LocaleUtils;
+import app.quranhub.utils.SharedPrefsUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -155,7 +155,7 @@ public class AyaAudioService extends BaseService
     }
 
     private void updateNotificationState(boolean isPausd) {
-        SharedPrefsUtil.saveBoolean(this, AUDIO_PLAYING, !isPausd);
+        SharedPrefsUtils.saveBoolean(this, AUDIO_PLAYING, !isPausd);
         if (isPausd) {
             notificationManager.notify(NOTIFICATION_ID, pausedNotificationBuilder.build());
         } else {
@@ -184,10 +184,10 @@ public class AyaAudioService extends BaseService
                 getAudioIntent(ACTION_RESUME), PendingIntent.FLAG_UPDATE_CURRENT);
 
         nextIntent = PendingIntent.getService(getApplicationContext(), REQUEST_CODE_NEXT,
-                getAudioIntent(LocaleUtil.isRTL(this) ? ACTION_PREVIOUS : ACTION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
+                getAudioIntent(LocaleUtils.isRTL(this) ? ACTION_PREVIOUS : ACTION_NEXT), PendingIntent.FLAG_UPDATE_CURRENT);
 
         prevIntent = PendingIntent.getService(getApplicationContext(), REQUEST_CODE_PREVIOUS,
-                getAudioIntent(LocaleUtil.isRTL(this) ? ACTION_NEXT : ACTION_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
+                getAudioIntent(LocaleUtils.isRTL(this) ? ACTION_NEXT : ACTION_PREVIOUS), PendingIntent.FLAG_UPDATE_CURRENT);
 
         stopIntent = PendingIntent.getService(getApplicationContext(), REQUEST_CODE_STOP,
                 getAudioIntent(ACTION_STOP), PendingIntent.FLAG_UPDATE_CURRENT);
@@ -235,8 +235,8 @@ public class AyaAudioService extends BaseService
         super.onDestroy();
         releaseAudio();
         stopAyaAudioDelay();
-        SharedPrefsUtil.saveBoolean(this, SERVICE_RUNNING, false);
-        SharedPrefsUtil.saveBoolean(this, AUDIO_PLAYING, false);
+        SharedPrefsUtils.saveBoolean(this, SERVICE_RUNNING, false);
+        SharedPrefsUtils.saveBoolean(this, AUDIO_PLAYING, false);
     }
 
     @Override
@@ -274,7 +274,7 @@ public class AyaAudioService extends BaseService
 
     // handle service actions and update audio state depend on sending action
     private void setAudioState(String action) {
-        SharedPrefsUtil.saveBoolean(this, SERVICE_RUNNING, true);
+        SharedPrefsUtils.saveBoolean(this, SERVICE_RUNNING, true);
         if (action.equals(ACTION_PLAY)) {
             checkSelectedAyaInRepeat();
             checkAyaAudioDownloaded(currentAyaId);
@@ -444,12 +444,12 @@ public class AyaAudioService extends BaseService
 
     @SuppressLint("CheckResult")
     public void checkAyaAudioDownloaded(int ayaId) {
-        SharedPrefsUtil.saveInteger(this, AYA_ID_KEY, ayaId);
+        SharedPrefsUtils.saveInteger(this, AYA_ID_KEY, ayaId);
         currentAyaRepeatNumber = 1;
         stopAudio();
         stopAyaAudioDelay();
-        String sheikhId = PreferencesUtils.getReciterSheikhSetting(this);
-        int recitationId = PreferencesUtils.getRecitationSetting(this);
+        String sheikhId = UserPreferencesUtils.getReciterSheikhSetting(this);
+        int recitationId = UserPreferencesUtils.getRecitationSetting(this);
         userDatabase.getQuranAudioDao()
                 .getAyaAudioPath(ayaId, recitationId, sheikhId)
                 .subscribeOn(Schedulers.io())
@@ -470,7 +470,7 @@ public class AyaAudioService extends BaseService
                 try {
                     mediaPlayer.setDataSource(audioPath);
                     mediaPlayer.prepare();
-                    SharedPrefsUtil.saveBoolean(this, AUDIO_PLAYING, true);
+                    SharedPrefsUtils.saveBoolean(this, AUDIO_PLAYING, true);
                     currentAudioPath = audioPath;
                     updateNotificationContent(false, ayaIdInfoArrayList.get(currentAyaId - 1));
                 } catch (Exception e) {

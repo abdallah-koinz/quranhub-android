@@ -20,7 +20,7 @@ import java.util.List;
 
 import app.quranhub.R;
 import app.quranhub.mushaf.model.HizbQuarterDataModel;
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -100,12 +100,12 @@ public class Guz2IndexAdapter extends RecyclerView.Adapter<Guz2IndexAdapter.View
         }
 
         holder.ayaContentTextView.setText(model.getAyaText());
-        holder.rub3NumTextView.setText(LocaleUtil.formatNumber(model.getQuarter()));
+        holder.rub3NumTextView.setText(LocaleUtils.formatNumber(model.getQuarter()));
         holder.suraNameTextView.setText(
                 context.getResources().getStringArray(R.array.sura_name)[model.getSuraNumber() - 1]);
-        holder.ayaNumTextView.setText(LocaleUtil.formatNumber(model.getAyaNumber()));
-        holder.startPageNumTextView.setText(LocaleUtil.formatNumber(model.getStartPage()));
-        holder.endPageNumTextView.setText(LocaleUtil.formatNumber(model.getEndPage()));
+        holder.ayaNumTextView.setText(LocaleUtils.formatNumber(model.getAyaNumber()));
+        holder.startPageNumTextView.setText(LocaleUtils.formatNumber(model.getStartPage()));
+        holder.endPageNumTextView.setText(LocaleUtils.formatNumber(model.getEndPage()));
     }
 
     @Override

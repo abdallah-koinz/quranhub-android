@@ -24,7 +24,7 @@ import app.quranhub.R;
 import app.quranhub.mushaf.adapter.BookmarkTypeAdapter;
 import app.quranhub.mushaf.data.entity.BookmarkType;
 import app.quranhub.mushaf.listener.ItemSelectionListener;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -108,7 +108,7 @@ public class BookmarkEditDialog extends DialogFragment implements ItemSelectionL
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this);
+        DialogUtils.adjustDialogSize(this);
     }
 
     public void initializeDialog() {

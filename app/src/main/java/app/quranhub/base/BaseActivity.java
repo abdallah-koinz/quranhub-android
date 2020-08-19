@@ -7,7 +7,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -15,13 +15,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        LocaleUtil.initAppLanguage(this);
+        LocaleUtils.initAppLanguage(this);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleUtil.initAppLanguage(newBase));
+        super.attachBaseContext(LocaleUtils.initAppLanguage(newBase));
     }
 
     public void restart() {

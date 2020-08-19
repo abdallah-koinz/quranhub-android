@@ -4,7 +4,7 @@ package app.quranhub.mushaf.model;
 import android.content.Context;
 
 import app.quranhub.R;
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 
 /**
  * Mapper class to use columns as strings to convert number to arabic
@@ -88,12 +88,12 @@ public class SuraIndexModelMapper {
         SuraIndexModelMapper indexModelMapper = new SuraIndexModelMapper();
         String suraName = " " + context.getResources().getStringArray(R.array.sura_name)[model.getSura() - 1] + " ";
 
-        indexModelMapper.setGuz(LocaleUtil.formatNumber(model.getJuz()));
-        indexModelMapper.setId(LocaleUtil.formatNumber(model.getId()));
-        indexModelMapper.setPage(LocaleUtil.formatNumber(model.getPage()));
-        indexModelMapper.setNum_of_aya(LocaleUtil.formatNumber(model.getAyas()));
-        indexModelMapper.setSura_hezb(LocaleUtil.formatNumber(model.getSura_hezb()));
-        indexModelMapper.setSura_rob3(LocaleUtil.formatNumber(model.getSura_rob3()));
+        indexModelMapper.setGuz(LocaleUtils.formatNumber(model.getJuz()));
+        indexModelMapper.setId(LocaleUtils.formatNumber(model.getId()));
+        indexModelMapper.setPage(LocaleUtils.formatNumber(model.getPage()));
+        indexModelMapper.setNum_of_aya(LocaleUtils.formatNumber(model.getAyas()));
+        indexModelMapper.setSura_hezb(LocaleUtils.formatNumber(model.getSura_hezb()));
+        indexModelMapper.setSura_rob3(LocaleUtils.formatNumber(model.getSura_rob3()));
         indexModelMapper.setName(suraName);
         indexModelMapper.setSura_type(model.getType());
 

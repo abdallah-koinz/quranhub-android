@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import app.quranhub.R;
 import app.quranhub.mushaf.adapter.SearchAdapter;
@@ -38,7 +37,7 @@ import app.quranhub.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.mushaf.model.SearchModel;
 import app.quranhub.mushaf.viewmodel.SearchViewModel;
 import app.quranhub.settings.dialogs.OptionsListDialogFragment;
-import app.quranhub.utils.ScreenUtil;
+import app.quranhub.utils.ScreenUtils;
 import app.quranhub.utils.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -303,7 +302,7 @@ public class SearchFragment extends Fragment implements ItemSelectionListener<Se
         if (selectedJuz == 0) {
             option = getString(R.string.all_guz2);
         } else {
-            option = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.agza2_name)[selectedJuz - 1];
+            option = requireActivity().getResources().getStringArray(R.array.agza2_name)[selectedJuz - 1];
         }
         DialogFragment dialog = OptionDialog.getInstance(juzOptions, option, JUZ_FILTER_CODE, getString(R.string.chapters));
         dialog.show(getChildFragmentManager(), "JuzDialog");
@@ -313,7 +312,7 @@ public class SearchFragment extends Fragment implements ItemSelectionListener<Se
         if (selectedSura == 0) {
             option = getString(R.string.all_sura);
         } else {
-            option = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.sura_name)[selectedSura - 1];
+            option = requireActivity().getResources().getStringArray(R.array.sura_name)[selectedSura - 1];
         }
         DialogFragment dialog = OptionDialog.getInstance(suraOptions, option, SURA_FILTER_CODE, getString(R.string.suras));
         dialog.show(getChildFragmentManager(), "OptionDialog");
@@ -364,7 +363,7 @@ public class SearchFragment extends Fragment implements ItemSelectionListener<Se
 
     @Override
     public void onSelectItem(SearchModel item) {
-        ScreenUtil.dismissKeyboard(getContext(), searchEt);
+        ScreenUtils.dismissKeyboard(getContext(), searchEt);
         quranNavigationCallbacks.gotoQuranPageAya(item.getPage(), item.getId(), true);
     }
 

@@ -5,9 +5,9 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
-public final class DialogUtil {
+public final class DialogUtils {
 
-    private DialogUtil() { /* Prevent instantiation */ }
+    private DialogUtils() { /* Prevent instantiation */ }
 
     // Declare dialogs width & height to be proportional to screen size
     // for example width 0.8 means 80% of total screen width
@@ -43,7 +43,7 @@ public final class DialogUtil {
 
         int totalWidth = dialogFragment.getResources().getDisplayMetrics().widthPixels;
         int totalHeight = dialogFragment.getResources().getDisplayMetrics().heightPixels;
-        if (ScreenUtil.isPortrait(dialogFragment.getContext())) {
+        if (ScreenUtils.isPortrait(dialogFragment.getContext())) {
             dialogFragment.getDialog().getWindow().setLayout((int) (totalWidth * widthScreenRatioPortrait)
                     , (int) (totalHeight * heightScreenRatioPortrait));
         } else {
@@ -56,7 +56,7 @@ public final class DialogUtil {
     public static void wrapDialogHeight(@NonNull DialogFragment dialogFragment) {
 
         int totalWidth = dialogFragment.getResources().getDisplayMetrics().widthPixels;
-        if (ScreenUtil.isPortrait(dialogFragment.getContext())) {
+        if (ScreenUtils.isPortrait(dialogFragment.getContext())) {
             dialogFragment.getDialog().getWindow().setLayout((int) (totalWidth * DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT)
                     , WindowManager.LayoutParams.WRAP_CONTENT);
         } else {
@@ -69,7 +69,7 @@ public final class DialogUtil {
     public static void adjustLandscapeDialogSize(DialogFragment dialogFragment) {
         int totalWidth = dialogFragment.getResources().getDisplayMetrics().widthPixels;
         int totalHeight = dialogFragment.getResources().getDisplayMetrics().heightPixels;
-        if (ScreenUtil.isPortrait(dialogFragment.getContext())) {
+        if (ScreenUtils.isPortrait(dialogFragment.getContext())) {
             dialogFragment.getDialog().getWindow().setLayout((int) (totalWidth * DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT), totalHeight);
         } else {
             dialogFragment.getDialog().getWindow().setLayout((int) (totalWidth * DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE)

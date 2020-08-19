@@ -25,7 +25,7 @@ import app.quranhub.R;
 import app.quranhub.mushaf.data.entity.Aya;
 import app.quranhub.mushaf.model.RepeatModel;
 import app.quranhub.mushaf.model.SuraVersesNumber;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -148,7 +148,7 @@ public class AyaRepeatDialog extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent != null && parent.getChildAt(0) != null)
-                    ((TextView) parent.getChildAt(0)).setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.white_color));
+                    ((TextView) parent.getChildAt(0)).setTextColor(requireActivity().getResources().getColor(R.color.white_color));
                 maxFromAyaNumber = suraVersesNumberArrayList.get(position).getAyas();
                 if (fromUser) {
                     fromAyaEt.setText("1");
@@ -166,7 +166,7 @@ public class AyaRepeatDialog extends DialogFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent != null && parent.getChildAt(0) != null)
-                    ((TextView) parent.getChildAt(0)).setTextColor(Objects.requireNonNull(getActivity()).getResources().getColor(R.color.white_color));
+                    ((TextView) parent.getChildAt(0)).setTextColor(requireActivity().getResources().getColor(R.color.white_color));
                 maxToAyaNumber = suraVersesNumberArrayList.get(position).getAyas();
                 if (fromUser) {
                     toAyaEt.setText(String.valueOf(maxToAyaNumber));
@@ -216,7 +216,7 @@ public class AyaRepeatDialog extends DialogFragment {
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this, 0.8f,
+        DialogUtils.adjustDialogSize(this, 0.8f,
                 0.8f, 0.7f,
                 0.9f);
 

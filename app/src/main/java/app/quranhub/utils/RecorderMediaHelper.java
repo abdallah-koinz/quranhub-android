@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class RecorderMediaUtil {
+public class RecorderMediaHelper {
 
     public static final int PLAYBACK_POSITION_REFRESH_INTERVAL_MS = 150;
     public static final int TIMER_INTERVAL_MS = 1;
@@ -20,7 +20,7 @@ public class RecorderMediaUtil {
     private Runnable seekbarPositionUpdateTask, audioTimeRunnable;
     private Handler audioUpdatedTimeTask;
 
-    public RecorderMediaUtil() {
+    public RecorderMediaHelper() {
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnCompletionListener(mp -> {
             stopUpdatingCallbackWithPosition();
@@ -160,7 +160,7 @@ public class RecorderMediaUtil {
     }
 
 
-    public interface MediaPlayerCallback extends AyaAudioUtil.AudioStateCallback {
+    public interface MediaPlayerCallback extends AyaAudioHelper.AudioStateCallback {
 
         void onGetMaxDuration(int duration);
 
@@ -169,7 +169,6 @@ public class RecorderMediaUtil {
         void onUpdatedTime(String time);
 
     }
-
 
 }
 

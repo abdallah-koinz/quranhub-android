@@ -36,9 +36,9 @@ import app.quranhub.mushaf.data.db.UserDatabase;
 import app.quranhub.mushaf.data.entity.Sheikh;
 import app.quranhub.mushaf.network.ApiClient;
 import app.quranhub.settings.dialogs.OptionsListAdapter;
-import app.quranhub.utils.DialogUtil;
-import app.quranhub.utils.FragmentUtil;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.DialogUtils;
+import app.quranhub.utils.FragmentUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -194,7 +194,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this);
+        DialogUtils.adjustDialogSize(this);
     }
 
     @Override
@@ -208,7 +208,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
             public void onResponse(@NonNull Call<RecitersResponse> call,
                                    @NonNull Response<RecitersResponse> response) {
 
-                if (FragmentUtil.isSafeFragment(QuranRecitersDialogFragment.this)) {
+                if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
                     RecitersResponse recitersResponse = response.body();
                     if (recitersResponse != null) {
                         reciters = recitersResponse.getReciters();
@@ -225,7 +225,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
             @Override
             public void onFailure(@NonNull Call<RecitersResponse> call, @NonNull Throwable t) {
                 Log.e(TAG, "RecitersApi#getQuranReciters service call failed");
-                if (FragmentUtil.isSafeFragment(QuranRecitersDialogFragment.this)) {
+                if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
 
                     // try to display the downloaded reciters
                     loadRecitersFromDb();
@@ -252,7 +252,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
             @Override
             protected void onPostExecute(List<Sheikh> recitersList) {
                 if (recitersList != null &&
-                        FragmentUtil.isSafeFragment(QuranRecitersDialogFragment.this)) {
+                        FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
                     reciters = recitersList;
                     if (reciters.size() > 0) {
                         downloadedRecitersOnlyMsgTextView.setVisibility(View.VISIBLE);
@@ -293,7 +293,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
 
             @Override
             protected Void doInBackground(Void... voids) {
-                if (FragmentUtil.isSafeFragment(QuranRecitersDialogFragment.this)) {
+                if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
 
                     // Store selected reciter in DB
                     UserDatabase userDatabase = UserDatabase.getInstance(requireContext());
@@ -303,9 +303,9 @@ public class QuranRecitersDialogFragment extends DialogFragment
                     }
 
                     // persist selected reciter as preference if recitation id matches the one in preferences
-                    int recitationIdPreference = PreferencesUtils.getRecitationSetting(requireContext());
+                    int recitationIdPreference = UserPreferencesUtils.getRecitationSetting(requireContext());
                     if (recitationIdPreference == recitationId) {
-                        PreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciter.getId());
+                        UserPreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciter.getId());
                     }
                 }
                 return null;

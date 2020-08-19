@@ -35,13 +35,13 @@ import java.util.Objects;
 import app.quranhub.Constants;
 import app.quranhub.R;
 import app.quranhub.mushaf.data.entity.Note;
-import app.quranhub.utils.DialogUtil;
-import app.quranhub.utils.RecorderMediaUtil;
+import app.quranhub.utils.DialogUtils;
+import app.quranhub.utils.RecorderMediaHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.MediaPlayerCallback {
+public class AddNoteDialog extends DialogFragment implements RecorderMediaHelper.MediaPlayerCallback {
 
     @BindView(R.id.note_type_group)
     RadioGroup noteRadioGroup;
@@ -76,7 +76,7 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
     private String outputRecorderPath;
     private int ayaId;
     private MediaRecorder audioRecorder;
-    private RecorderMediaUtil recorderMediaUtil;
+    private RecorderMediaHelper recorderMediaHelper;
     private File outputFile;
     private Note note;
     private boolean isEditable = false;
@@ -121,8 +121,8 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this, DialogUtil.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.8f
-                , DialogUtil.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE, DialogUtil.DIALOG_STD_HEIGHT_SCREEN_RATIO_LANDSCAPE);
+        DialogUtils.adjustDialogSize(this, DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.8f
+                , DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE, DialogUtils.DIALOG_STD_HEIGHT_SCREEN_RATIO_LANDSCAPE);
     }
 
 
@@ -229,9 +229,9 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
     }
 
     private void initSoundMedia() {
-        recorderMediaUtil = new RecorderMediaUtil();
-        recorderMediaUtil.setMediaPlayerCallback(this);
-        recorderMediaUtil.setAudioPath(outputRecorderPath);
+        recorderMediaHelper = new RecorderMediaHelper();
+        recorderMediaHelper.setMediaPlayerCallback(this);
+        recorderMediaHelper.setAudioPath(outputRecorderPath);
     }
 
     private void stopRecorderMedia() {
@@ -241,8 +241,8 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
             }
             audioRecorder.release();
         }
-        if (recorderMediaUtil != null) {
-            recorderMediaUtil.release();
+        if (recorderMediaHelper != null) {
+            recorderMediaHelper.release();
         }
     }
 
@@ -251,11 +251,11 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
 
         if (isPlaying) {
             playIv.setImageResource(R.drawable.player_play_white_ic);
-            recorderMediaUtil.pause();
+            recorderMediaHelper.pause();
         } else {
             playIv.setImageResource(R.drawable.ic_pause);
-            recorderMediaUtil.play();
-            recorderMediaUtil.startUpdatingAudioTime();
+            recorderMediaHelper.play();
+            recorderMediaHelper.startUpdatingAudioTime();
             if (firstPlay) {
                 firstPlay = false;
                 voiceTiemrTv.setText("0:00");
@@ -272,7 +272,7 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
         addRecorderIv.setVisibility(View.VISIBLE);
         addRecorderIv.setBackgroundResource(R.drawable.corner_primary_dialog);
         voiceStatusTv.setText(getString(R.string.add_voice));
-        recorderMediaUtil.release();
+        recorderMediaHelper.release();
         isRecorderAttatched = false;
     }
 
@@ -300,7 +300,7 @@ public class AddNoteDialog extends DialogFragment implements RecorderMediaUtil.M
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 userIsSeeking = false;
-                recorderMediaUtil.seekTo(userSelectedPosition);
+                recorderMediaHelper.seekTo(userSelectedPosition);
             }
         });
     }

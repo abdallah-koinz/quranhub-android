@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 import app.quranhub.Constants;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 
 public class VoiceRecorderViewModel extends AndroidViewModel {
 
@@ -33,7 +33,7 @@ public class VoiceRecorderViewModel extends AndroidViewModel {
     }
 
     public void setAyaRecorderPath(int ayaId, Context context) {
-        int recitation = PreferencesUtils.getRecitationSetting(context);
+        int recitation = UserPreferencesUtils.getRecitationSetting(context);
         File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_MUSIC), Constants.DIRECTORY.AYA_VOICE_RECORDER);
         File childFile = new File(file.getPath() + File.separator + recitation);
         if (!file.exists()) {

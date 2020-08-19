@@ -24,7 +24,7 @@ import app.quranhub.Constants;
 import app.quranhub.R;
 import app.quranhub.mushaf.listener.ItemSelectionListener;
 import app.quranhub.mushaf.model.DisplayableBookmark;
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -215,14 +215,14 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
             }
 
             ayaContentTextView.setText(displayableBookmark.getAyaContent());
-            ayaNumTextView.setText(LocaleUtil.formatNumber(displayableBookmark.getSuraAyaNumber()));
-            guz2NumTextView.setText(LocaleUtil.formatNumber(displayableBookmark.getGuz2Number()));
-            hizbNumTextView.setText(LocaleUtil.formatNumber(displayableBookmark.getHizbNumber()));
-            rub3NumTextView.setText(LocaleUtil.formatNumber(displayableBookmark.getRub3Number()));
+            ayaNumTextView.setText(LocaleUtils.formatNumber(displayableBookmark.getSuraAyaNumber()));
+            guz2NumTextView.setText(LocaleUtils.formatNumber(displayableBookmark.getGuz2Number()));
+            hizbNumTextView.setText(LocaleUtils.formatNumber(displayableBookmark.getHizbNumber()));
+            rub3NumTextView.setText(LocaleUtils.formatNumber(displayableBookmark.getRub3Number()));
             suraNameTextView.setText(displayableBookmark.getSuraName());
             suraNameTextView.setTypeface(Typeface.create(Typeface.createFromAsset(
                     context.getAssets(), "fonts/diwany_thuluth.ttf"), Typeface.BOLD));
-            pageNumTextView.setText(LocaleUtil.formatNumber(displayableBookmark.getPageNumber()));
+            pageNumTextView.setText(LocaleUtils.formatNumber(displayableBookmark.getPageNumber()));
 
             if (isEditable) {
                 deleteBookmarkImageButton.setVisibility(View.VISIBLE);

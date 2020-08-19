@@ -47,7 +47,7 @@ import app.quranhub.mushaf.network.BookDownloadManager;
 import app.quranhub.mushaf.network.model.BookContent;
 import app.quranhub.mushaf.utils.NetworkUtil;
 import app.quranhub.mushaf.viewmodel.BooksViewModel;
-import app.quranhub.utils.FragmentUtil;
+import app.quranhub.utils.FragmentUtils;
 import app.quranhub.utils.interfaces.Searchable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -397,7 +397,7 @@ public class BookDataFragment extends Fragment implements Searchable, EasyPermis
     @Override
     public void onResume() {
         super.onResume();
-        if (FragmentUtil.isSafeFragment(this)) {
+        if (FragmentUtils.isSafeFragment(this)) {
             getActivity().registerReceiver(onDownloadComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
         }
     }
@@ -406,7 +406,7 @@ public class BookDataFragment extends Fragment implements Searchable, EasyPermis
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (FragmentUtil.isSafeFragment(this))
+        if (FragmentUtils.isSafeFragment(this))
             getActivity().unregisterReceiver(onDownloadComplete);
     }
 

@@ -28,14 +28,14 @@ import app.quranhub.downloads_manager.network.QuranAudioDownloaderService;
 import app.quranhub.mushaf.data.db.UserDatabase;
 import app.quranhub.mushaf.data.entity.SheikhRecitation;
 import app.quranhub.mushaf.utils.NetworkUtil;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-import static app.quranhub.utils.DialogUtil.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE;
-import static app.quranhub.utils.DialogUtil.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT;
+import static app.quranhub.utils.DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE;
+import static app.quranhub.utils.DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT;
 
 /**
  * A {@code DialogFragment} that allows the user to choose the Quran audio amount he wants to download.
@@ -187,7 +187,7 @@ public class AudioDownloadAmountDialogFragment extends DialogFragment {
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this, DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.4f,
+        DialogUtils.adjustDialogSize(this, DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.4f,
                 DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE, 0.7f);
     }
 

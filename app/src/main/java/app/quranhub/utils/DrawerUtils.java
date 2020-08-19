@@ -16,9 +16,9 @@ import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import app.quranhub.R;
 import app.quranhub.mushaf.fragments.SuraGuz2IndexFragment;
 
-public final class DrawerUtil {
+public final class DrawerUtils {
 
-    private static final String TAG = DrawerUtil.class.getSimpleName();
+    private static final String TAG = DrawerUtils.class.getSimpleName();
 
     public static final int IDENTIFIER_MUSHAF = 0;
     public static final int IDENTIFIER_INDEX = 1;
@@ -29,17 +29,17 @@ public final class DrawerUtil {
     public static final int IDENTIFIER_SETTINGS = 6;
     public static final int IDENTIFIER_DOWNLOADS_MANAGER = 7;
 
-    private DrawerUtil() { /* prevent instantiation */}
+    private DrawerUtils() { /* prevent instantiation */}
 
     /**
      * Creates and adds the side nav drawer to the passed activity.
      *
      * @param activity           activity to add nav drawer to.
-     *                           Must implement {@link DrawerUtil.Mus7afDrawerItemClickListener}.
+     *                           Must implement {@link DrawerUtils.Mus7afDrawerItemClickListener}.
      * @param savedInstanceState The passed activity's {@code savedInstanceState} bundle.
      * @return the drawer instance.
      * @throws IllegalArgumentException if the passed activity doesn't implement
-     *                                  {@link DrawerUtil.Mus7afDrawerItemClickListener}.
+     *                                  {@link DrawerUtils.Mus7afDrawerItemClickListener}.
      */
     @NonNull
     public static Drawer initDrawer(@NonNull Activity activity, Bundle savedInstanceState
@@ -47,7 +47,7 @@ public final class DrawerUtil {
 
         if (!(activity instanceof Mus7afDrawerItemClickListener)) {
             throw new IllegalArgumentException("The passed activity argument must implement " +
-                    "DrawerUtil.Mus7afDrawerItemClickListener");
+                    "DrawerUtils.Mus7afDrawerItemClickListener");
         }
 
         Mus7afDrawerItemClickListener clickListener = (Mus7afDrawerItemClickListener) activity;

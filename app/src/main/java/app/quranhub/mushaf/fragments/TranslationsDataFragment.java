@@ -31,8 +31,8 @@ import app.quranhub.mushaf.network.ApiClient;
 import app.quranhub.mushaf.network.TranslationDownloader;
 import app.quranhub.mushaf.network.api.TranslationsApi;
 import app.quranhub.mushaf.network.model.TranslationsResponse;
-import app.quranhub.utils.FragmentUtil;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.FragmentUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import app.quranhub.utils.interfaces.Searchable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -134,7 +134,7 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
                 layoutManager.getOrientation());
         translationsRecyclerView.addItemDecoration(dividerItemDecoration);
         displayableTranslations = new ArrayList<>();
-        adapter = new TranslationsAdapter(displayableTranslations, PreferencesUtils.getQuranTranslationBook(getContext()), this);
+        adapter = new TranslationsAdapter(displayableTranslations, UserPreferencesUtils.getQuranTranslationBook(getContext()), this);
         translationsRecyclerView.setAdapter(adapter);
     }
 
@@ -162,7 +162,7 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
             @Override
             public void onResponse(@NonNull Call<TranslationsResponse> call, @NonNull Response<TranslationsResponse> response) {
 
-                if (FragmentUtil.isSafeFragment(TranslationsDataFragment.this)) {
+                if (FragmentUtils.isSafeFragment(TranslationsDataFragment.this)) {
 
                     TranslationsResponse translationsResponse = response.body();
 
@@ -192,7 +192,7 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
             public void onFailure(@NonNull Call<TranslationsResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "onFailure - cause:  " + t.getMessage());
 
-                if (FragmentUtil.isSafeFragment(TranslationsDataFragment.this)) {
+                if (FragmentUtils.isSafeFragment(TranslationsDataFragment.this)) {
                     //progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), getString(R.string.error_translations_web_service)
                             , Toast.LENGTH_LONG).show();
@@ -278,9 +278,9 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
     public void onTranslationClick(TranslationBook translationBook, int clickedItemIndex) {
         Log.d(TAG, "Clicked translation book: " + translationBook);
 
-        PreferencesUtils.persistQuranTranslationBook(getContext(), translationBook.getId());
-        PreferencesUtils.persistBookDbName(getActivity(), translationBook.getDatabaseName());
-        PreferencesUtils.persistBookName(getActivity(), translationBook.getName());
+        UserPreferencesUtils.persistQuranTranslationBook(getContext(), translationBook.getId());
+        UserPreferencesUtils.persistBookDbName(getActivity(), translationBook.getDatabaseName());
+        UserPreferencesUtils.persistBookName(getActivity(), translationBook.getName());
         listener.onTranslationSelected(translationBook);
     }
 
@@ -329,7 +329,7 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
 
     @Override
     public void onDownloadFailed() {
-        if (FragmentUtil.isSafeFragment(this)) {
+        if (FragmentUtils.isSafeFragment(this)) {
             Toast.makeText(getContext(), getString(R.string.error_download_translation), Toast.LENGTH_SHORT).show();
         }
     }

@@ -28,7 +28,7 @@ import app.quranhub.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.mushaf.model.SearchModel;
 import app.quranhub.mushaf.model.TopicCategory;
 import app.quranhub.mushaf.viewmodel.TopicViewModel;
-import app.quranhub.utils.ScreenUtil;
+import app.quranhub.utils.ScreenUtils;
 import app.quranhub.utils.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -143,7 +143,7 @@ public class TopicAyasFragment extends Fragment implements ItemSelectionListener
 
     @Override
     public void onSelectItem(SearchModel item) {
-        ScreenUtil.dismissKeyboard(requireContext(), searchEt);
+        ScreenUtils.dismissKeyboard(requireContext(), searchEt);
         quranNavigationCallbacks.gotoQuranPageAya(item.getPage(), item.getId(), false);
     }
 

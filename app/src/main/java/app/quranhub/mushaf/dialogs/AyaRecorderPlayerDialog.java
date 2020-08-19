@@ -23,20 +23,20 @@ import java.util.Objects;
 
 import app.quranhub.Constants;
 import app.quranhub.R;
-import app.quranhub.utils.PreferencesUtils;
-import app.quranhub.utils.RecorderMediaUtil;
+import app.quranhub.utils.RecorderMediaHelper;
+import app.quranhub.utils.UserPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderMediaUtil.MediaPlayerCallback {
+public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderMediaHelper.MediaPlayerCallback {
 
     private View dialogView;
     private Dialog dialog;
     private static final String ARG_AYA_ID = "ARG_AYA_ID";
     private AyaRecorderPlayerListener listener;
-    private RecorderMediaUtil recorderMediaUtil;
+    private RecorderMediaHelper recorderMediaHelper;
     private String outputRecorderPath;
     private int ayaId;
     private boolean isPlaying = false, userIsSeeking = false, firstPlay = true;
@@ -80,7 +80,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
 
     private void getPrevState(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            recorderMediaUtil.seekTo(savedInstanceState.getInt("player_position"));
+            recorderMediaHelper.seekTo(savedInstanceState.getInt("player_position"));
             isPlaying = savedInstanceState.getBoolean("is_playing");
             restorePlayingState();
         }
@@ -89,7 +89,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     private void restorePlayingState() {
         if (isPlaying) {
             playIv.setImageResource(R.drawable.ic_pause);
-            recorderMediaUtil.play();
+            recorderMediaHelper.play();
         }
     }
 
@@ -97,7 +97,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean("is_playing", isPlaying);
-        outState.putInt("player_position", recorderMediaUtil.getCurrentPosition());
+        outState.putInt("player_position", recorderMediaHelper.getCurrentPosition());
 
     }
 
@@ -116,7 +116,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     }
 
     private void setRecordingFile() {
-        int recitation = PreferencesUtils.getRecitationSetting(getActivity());
+        int recitation = UserPreferencesUtils.getRecitationSetting(getActivity());
         File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_MUSIC), Constants.DIRECTORY.AYA_VOICE_RECORDER
                 + File.separator + recitation + File.separator
                 + ayaId + ".3gp");
@@ -147,22 +147,22 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 userIsSeeking = false;
-                recorderMediaUtil.seekTo(userSelectedPosition);
+                recorderMediaHelper.seekTo(userSelectedPosition);
             }
         });
     }
 
     private void initSoundMedia() {
         if (outputRecorderPath != null) {
-            recorderMediaUtil = new RecorderMediaUtil();
-            recorderMediaUtil.setMediaPlayerCallback(this);
-            recorderMediaUtil.setAudioPath(outputRecorderPath);
+            recorderMediaHelper = new RecorderMediaHelper();
+            recorderMediaHelper.setMediaPlayerCallback(this);
+            recorderMediaHelper.setAudioPath(outputRecorderPath);
         }
     }
 
     @OnClick(R.id.remove_record_iv)
     public void onRemoveRecorder() {
-        recorderMediaUtil.release();
+        recorderMediaHelper.release();
         listener.onClickDeleteRecorder();
         dismiss();
     }
@@ -171,11 +171,11 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     public void onPlayRecorder() {
         if (isPlaying) {
             playIv.setImageResource(R.drawable.player_play_white_ic);
-            recorderMediaUtil.pause();
+            recorderMediaHelper.pause();
         } else {
             playIv.setImageResource(R.drawable.ic_pause);
-            recorderMediaUtil.play();
-            recorderMediaUtil.startUpdatingAudioTime();
+            recorderMediaHelper.play();
+            recorderMediaHelper.startUpdatingAudioTime();
             if (firstPlay) {
                 firstPlay = false;
                 recorderTime.setText("0:00");
@@ -218,8 +218,8 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (!getActivity().isChangingConfigurations() && recorderMediaUtil != null) {
-            recorderMediaUtil.release();
+        if (!getActivity().isChangingConfigurations() && recorderMediaHelper != null) {
+            recorderMediaHelper.release();
         }
     }
 

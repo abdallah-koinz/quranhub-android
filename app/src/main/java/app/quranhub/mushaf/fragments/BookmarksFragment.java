@@ -24,7 +24,7 @@ import app.quranhub.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.mushaf.presenter.BookmarksPresenter;
 import app.quranhub.mushaf.presenter.BookmarksPresenterImp;
 import app.quranhub.mushaf.view.BookmarksView;
-import app.quranhub.utils.ScreenUtil;
+import app.quranhub.utils.ScreenUtils;
 import app.quranhub.utils.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -216,7 +216,7 @@ public class BookmarksFragment extends Fragment
 
     @Override
     public void gotoQuranPageAya(int pageNumber, int ayaId, boolean addToBackStack) {
-        ScreenUtil.dismissKeyboard(requireActivity(), searchEditText);
+        ScreenUtils.dismissKeyboard(requireActivity(), searchEditText);
         quranNavigationCallbacks.gotoQuranPageAya(pageNumber, ayaId, false);
     }
 

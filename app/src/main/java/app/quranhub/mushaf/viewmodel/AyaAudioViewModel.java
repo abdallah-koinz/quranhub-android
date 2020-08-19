@@ -9,7 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import app.quranhub.utils.AyaAudioUtil;
+import app.quranhub.utils.AyaAudioHelper;
 
 public class AyaAudioViewModel extends AndroidViewModel {
 
@@ -21,7 +21,7 @@ public class AyaAudioViewModel extends AndroidViewModel {
         mediaPlayer = new MediaPlayer();
         audioStateLiveData = new MutableLiveData<>();
         mediaPlayer.setOnCompletionListener(mp -> {
-            audioStateLiveData.setValue(AyaAudioUtil.AudioStateCallback.State.COMPLETED);
+            audioStateLiveData.setValue(AyaAudioHelper.AudioStateCallback.State.COMPLETED);
         });
     }
 
@@ -31,7 +31,7 @@ public class AyaAudioViewModel extends AndroidViewModel {
             Log.e("TAG", path);
             mediaPlayer.setDataSource(path);
             mediaPlayer.setOnPreparedListener(mp -> {
-                audioStateLiveData.setValue(AyaAudioUtil.AudioStateCallback.State.PLAYING);
+                audioStateLiveData.setValue(AyaAudioHelper.AudioStateCallback.State.PLAYING);
                 mediaPlayer.start();
 
             });
@@ -67,7 +67,7 @@ public class AyaAudioViewModel extends AndroidViewModel {
         if (mediaPlayer != null && !isPlaying()) {
             try {
                 mediaPlayer.start();
-                audioStateLiveData.setValue(AyaAudioUtil.AudioStateCallback.State.PLAYING);
+                audioStateLiveData.setValue(AyaAudioHelper.AudioStateCallback.State.PLAYING);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -80,7 +80,7 @@ public class AyaAudioViewModel extends AndroidViewModel {
         if (mediaPlayer != null && isPlaying()) {
             try {
                 mediaPlayer.pause();
-                audioStateLiveData.setValue(AyaAudioUtil.AudioStateCallback.State.PAUSED);
+                audioStateLiveData.setValue(AyaAudioHelper.AudioStateCallback.State.PAUSED);
             } catch (Exception e) {
                 e.printStackTrace();
             }

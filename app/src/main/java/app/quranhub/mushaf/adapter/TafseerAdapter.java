@@ -15,7 +15,7 @@ import java.util.List;
 
 import app.quranhub.R;
 import app.quranhub.mushaf.model.TafseerModel;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import at.blogc.android.views.ExpandableTextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,7 +72,7 @@ public class TafseerAdapter extends RecyclerView.Adapter<TafseerAdapter.ViewHold
         });
 
 
-        if (!PreferencesUtils.getAppLangSetting(context).equals("ar") && !PreferencesUtils.getQuranTranslationLanguage(context).equals("ar")) {             // !LocaleUtil.getTranslationLanguage().equals("ar")
+        if (!UserPreferencesUtils.getAppLangSetting(context).equals("ar") && !UserPreferencesUtils.getQuranTranslationLanguage(context).equals("ar")) {             // !LocaleUtils.getTranslationLanguage().equals("ar")
             holder.parentLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         }
 

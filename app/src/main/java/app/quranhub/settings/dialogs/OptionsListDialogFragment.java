@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -167,7 +167,7 @@ public class OptionsListDialogFragment extends DialogFragment implements Options
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this);
+        DialogUtils.adjustDialogSize(this);
     }
 
     @Override

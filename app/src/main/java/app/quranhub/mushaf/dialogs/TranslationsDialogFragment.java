@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import app.quranhub.R;
 import app.quranhub.mushaf.data.entity.TranslationBook;
 import app.quranhub.mushaf.fragments.TranslationsDataFragment;
-import app.quranhub.utils.DialogUtil;
+import app.quranhub.utils.DialogUtils;
 
 /**
  * A dialog that displays translation books for a language & allows the user to download & select one.
@@ -108,7 +108,7 @@ public class TranslationsDialogFragment extends DialogFragment implements Transl
     public void onResume() {
         super.onResume();
 
-        DialogUtil.adjustDialogSize(this);
+        DialogUtils.adjustDialogSize(this);
     }
 
     @Override

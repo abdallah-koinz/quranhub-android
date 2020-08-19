@@ -31,7 +31,7 @@ import app.quranhub.mushaf.data.entity.Aya;
 import app.quranhub.mushaf.data.entity.QuranAudio;
 import app.quranhub.mushaf.network.downloader_service.DownloadRequestInfo;
 import app.quranhub.mushaf.network.downloader_service.PRDownloaderService;
-import app.quranhub.utils.LocaleUtil;
+import app.quranhub.utils.LocaleUtils;
 
 /**
  * {@code PRDownloaderService} for Quran audio files.
@@ -153,13 +153,13 @@ public class QuranAudioDownloaderService extends PRDownloaderService {
 
     @Override
     public void onCreate() {
-        LocaleUtil.initAppLanguage(this);
+        LocaleUtils.initAppLanguage(this);
         super.onCreate();
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleUtil.initAppLanguage(newBase));
+        super.attachBaseContext(LocaleUtils.initAppLanguage(newBase));
     }
 
     @Override

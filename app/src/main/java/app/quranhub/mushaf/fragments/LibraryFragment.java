@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import app.quranhub.R;
 import app.quranhub.main.MainActivity;
 import app.quranhub.mushaf.data.entity.TranslationBook;
-import app.quranhub.utils.PreferencesUtils;
+import app.quranhub.utils.UserPreferencesUtils;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -46,7 +46,7 @@ public class LibraryFragment extends Fragment implements TranslationsDataFragmen
 
         if (savedInstanceState == null) {
             TranslationsDataFragment translationsDataFragment = TranslationsDataFragment.newInstance(
-                    PreferencesUtils.getQuranTranslationLanguage(getContext()));
+                    UserPreferencesUtils.getQuranTranslationLanguage(getContext()));
             getChildFragmentManager().beginTransaction()
                     .add(R.id.container_data_fragment, translationsDataFragment, "TransDataFragment")
                     .commit();
