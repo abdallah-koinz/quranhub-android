@@ -3,7 +3,7 @@
     android:opacity="opaque">
 
     <!-- Background -->
-    <item android:drawable="?colorPrimaryDark" />
+    <item android:drawable="?colorPrimary" />
 
     <!-- Logo -->
     <item
