@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?colorPrimary"
     android:paddingTop="32dp"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
@@ -11,8 +10,8 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:src="@drawable/quranhub_logo_144dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_app_name"
@@ -23,11 +22,11 @@
 
     <TextView
         android:id="@+id/tv_app_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="12dp"
         android:text="@string/quranhub"
-        android:textColor="@color/white_color"
+        android:textColor="?colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
