@@ -202,9 +202,8 @@ public class BookmarksFragment extends Fragment
         // disable/enable the edit image button
         if (isEditable) {
             editButton.setImageResource(R.drawable.edit_gold_ic);
-            editButton.setColorFilter(ContextCompat.getColor(getActivity(), R.color.color_accent));
         } else {
-            editButton.setColorFilter(ContextCompat.getColor(getActivity(), R.color.dark_grey));
+            editButton.setColorFilter(ContextCompat.getColor(requireContext(), R.color.dark_grey));
         }
 
     }
