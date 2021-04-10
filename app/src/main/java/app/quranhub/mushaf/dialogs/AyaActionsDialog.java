@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
@@ -40,7 +41,7 @@ public class AyaActionsDialog extends DialogFragment {
     ImageView noteIv;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (getParentFragment() instanceof AyaPropertiesListener) {
             ayaPropertiesListener = (AyaPropertiesListener) getParentFragment();
@@ -66,11 +67,11 @@ public class AyaActionsDialog extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         dialogView = inflater.inflate(R.layout.dialog_aya_properties, null);
         ButterKnife.bind(this, dialogView);
-        intializeDialog();
+        initializeDialog();
         return dialog;
     }
 
-    public void intializeDialog() {
+    public void initializeDialog() {
         dialog = new Dialog(getActivity());
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);

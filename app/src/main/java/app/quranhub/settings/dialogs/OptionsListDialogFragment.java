@@ -1,5 +1,6 @@
 package app.quranhub.settings.dialogs;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -110,7 +111,7 @@ public class OptionsListDialogFragment extends DialogFragment implements Options
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         try {
@@ -133,6 +134,15 @@ public class OptionsListDialogFragment extends DialogFragment implements Options
         }
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        return dialog;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
@@ -141,13 +151,6 @@ public class OptionsListDialogFragment extends DialogFragment implements Options
         butterknifeUnbinder = ButterKnife.bind(this, dialogView);
         initDialogView();
         return dialogView;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     }
 
     private void initDialogView() {

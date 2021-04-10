@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.Objects;
@@ -25,7 +26,7 @@ public class OpenFileDialog extends DialogFragment {
     public static final int OUT_APP = 2;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listener = (OpenFileListener) getParentFragment();
     }

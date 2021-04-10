@@ -34,6 +34,7 @@ public class BookmarkEditDialog extends DialogFragment implements ItemSelectionL
     private final static String BOOKMARK_TYPES_ARGS = "BOOKMARK_TYPES_ARGS";
     private final static String FILTER_TYPE = "FILTER_TYPE";
     private final static String DIALOG_TYPE = "DIALOG_TYPE";
+
     private View dialogView;
     private Dialog dialog;
     private BookmarkFilterListener listener;
@@ -65,7 +66,7 @@ public class BookmarkEditDialog extends DialogFragment implements ItemSelectionL
 
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
             listener = (BookmarkFilterListener) getParentFragment();

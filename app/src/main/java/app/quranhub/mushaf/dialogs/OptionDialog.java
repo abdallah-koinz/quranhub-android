@@ -34,6 +34,7 @@ public class OptionDialog extends DialogFragment implements FilterAdapter.Option
     public static final String ALL_ITEMS_ARGS = "ALL_ITEMS_ARGS";
     public static final String CODE_ARGS = "CODE_ARGS";
     public static final String HEADER_ARGS = "HEADER_ARGS";
+
     private View dialogView;
     private Dialog dialog;
     private ItemClickListener listener;
@@ -60,7 +61,6 @@ public class OptionDialog extends DialogFragment implements FilterAdapter.Option
         return fragment;
     }
 
-
     public static DialogFragment getInstance(List<String> options, String suraName, String headerText) {
         DialogFragment fragment = new OptionDialog();
         Bundle bundle = new Bundle();
@@ -70,7 +70,6 @@ public class OptionDialog extends DialogFragment implements FilterAdapter.Option
         fragment.setArguments(bundle);
         return fragment;
     }
-
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -84,7 +83,7 @@ public class OptionDialog extends DialogFragment implements FilterAdapter.Option
         LayoutInflater inflater = getActivity().getLayoutInflater();
         dialogView = inflater.inflate(R.layout.dialog_sura_list, null);
         ButterKnife.bind(this, dialogView);
-        intializeDialog();
+        initializeDialog();
         setRecyclerList();
         observeOnInputSearch();
         return dialog;
@@ -123,7 +122,7 @@ public class OptionDialog extends DialogFragment implements FilterAdapter.Option
         suraRv.setAdapter(adapter);
     }
 
-    private void intializeDialog() {
+    private void initializeDialog() {
         dialog = new Dialog(requireActivity());
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(dialogView);

@@ -1,5 +1,6 @@
 package app.quranhub.downloads_manager.dialogs;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -71,7 +72,7 @@ public class DeleteConfirmationDialogFragment extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof DeleteConfirmationCallbacks) {
             callbacks = (DeleteConfirmationCallbacks) context;
@@ -93,6 +94,15 @@ public class DeleteConfirmationDialogFragment extends DialogFragment {
         }
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        final Dialog dialog = super.onCreateDialog(savedInstanceState);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        return dialog;
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -106,13 +116,6 @@ public class DeleteConfirmationDialogFragment extends DialogFragment {
     private void initDialogView() {
         titleTextView.setText(title);
         descriptionTextView.setText(description);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
     }
 
     @Override

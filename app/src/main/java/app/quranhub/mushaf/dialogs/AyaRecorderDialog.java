@@ -44,7 +44,7 @@ public class AyaRecorderDialog extends DialogFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listener = (StopRecordingListener) getParentFragment();
     }
@@ -56,7 +56,7 @@ public class AyaRecorderDialog extends DialogFragment {
         dialogView = inflater.inflate(R.layout.dialog_aya_recorder, null);
         ButterKnife.bind(this, dialogView);
         getArgs();
-        intializeDialog();
+        initializeDialog();
         initReorder(savedInstanceState == null);
         getPrevState(savedInstanceState);
         return dialog;
@@ -90,7 +90,7 @@ public class AyaRecorderDialog extends DialogFragment {
         }
     }
 
-    public void intializeDialog() {
+    public void initializeDialog() {
         dialog = new Dialog(getActivity());
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         dialog.setCanceledOnTouchOutside(false);

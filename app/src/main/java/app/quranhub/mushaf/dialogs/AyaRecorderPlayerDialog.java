@@ -59,7 +59,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listener = (AyaRecorderPlayerListener) getParentFragment();
     }
@@ -70,7 +70,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
         LayoutInflater inflater = getActivity().getLayoutInflater();
         dialogView = inflater.inflate(R.layout.dialog_play_aya_recorder, null);
         ButterKnife.bind(this, dialogView);
-        intializeDialog();
+        initializeDialog();
         setRecordingFile();
         initSoundMedia();
         getPrevState(savedInstanceState);
@@ -102,7 +102,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     }
 
 
-    public void intializeDialog() {
+    public void initializeDialog() {
         dialog = new Dialog(getActivity());
         dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         WindowManager.LayoutParams layoutParams = dialog.getWindow().getAttributes();

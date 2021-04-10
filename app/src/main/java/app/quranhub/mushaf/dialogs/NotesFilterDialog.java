@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +43,7 @@ public class NotesFilterDialog extends DialogFragment implements FilterAdapter.O
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         listener = (ItemSelectionListener) getParentFragment();
     }
@@ -58,16 +59,6 @@ public class NotesFilterDialog extends DialogFragment implements FilterAdapter.O
         initViews();
         return dialog;
     }
-
-
-    /*@Override
-    public void onResume() {
-        super.onResume();
-
-        DialogUtils.adjustDialogSize(this, DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_PORTRAIT, 0.8f
-                , DialogUtils.DIALOG_STD_WIDTH_SCREEN_RATIO_LANDSCAPE, DialogUtils.DIALOG_STD_HEIGHT_SCREEN_RATIO_LANDSCAPE);
-    }*/
-
 
     private void setFilterOptions() {
         options = new String[]{
