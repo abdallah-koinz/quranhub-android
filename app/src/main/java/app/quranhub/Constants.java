@@ -13,7 +13,7 @@ public final class Constants {
     public static final String BASE_URL = "http://api.haramin.gplanet.tech";
 
     public interface QURAN {
-        String BASE_URL = "http://quran.haramin.gplanet.tech";
+        String BASE_URL = "http://quran.gplanet.tech";
         String HAFS_IMAGE_BASE_URL = BASE_URL + "/hafs/images/";
         String WARSH_IMAGE_BASE_URL = BASE_URL + "/warsh/images/";
 
