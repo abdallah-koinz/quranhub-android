@@ -6,6 +6,7 @@
       <w>bottomsheet</w>
       <w>butterknife</w>
       <w>footerbar</w>
+      <w>hafs</w>
       <w>headerbar</w>
       <w>hezb</w>
       <w>hizb</w>
@@ -19,6 +20,7 @@
       <w>suras</w>
       <w>tafseer</w>
       <w>unbinder</w>
+      <w>warsh</w>
     </words>
   </dictionary>
 </component>
