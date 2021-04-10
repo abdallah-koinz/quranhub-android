@@ -13,9 +13,9 @@ public final class Constants {
     public static final String BASE_URL = "http://api.haramin.gplanet.tech";
 
     public interface QURAN {
-        String BASE_URL = "https://s.quranhub.app/quran/image/";
-        String HAFS_IMAGE_BASE_URL = BASE_URL + "hafs/otlooha/";
-        String WARSH_IMAGE_BASE_URL = BASE_URL + "warsh/otlooha/";
+        String BASE_URL = "https://s.quranhub.app/quran/";
+        String HAFS_IMAGE_BASE_URL = BASE_URL + "image/hafs/otlooha/";
+        String WARSH_IMAGE_BASE_URL = BASE_URL + "image/warsh/otlooha/";
 
         int NUM_OF_PAGES = 604;
 
