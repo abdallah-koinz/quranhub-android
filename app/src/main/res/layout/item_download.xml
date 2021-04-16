@@ -46,6 +46,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/download_action_green_ic" />
+        app:srcCompat="@drawable/ic_download" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

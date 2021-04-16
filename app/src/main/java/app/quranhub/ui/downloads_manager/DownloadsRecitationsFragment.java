@@ -12,7 +12,7 @@ import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
-import app.quranhub.ui.downloads_manager.utils.QuranAudioDeleteUtils;
+import app.quranhub.util.QuranAudioDeleteUtils;
 import app.quranhub.data.local.db.UserDatabase;
 
 public class DownloadsRecitationsFragment extends BaseDownloadsFragment

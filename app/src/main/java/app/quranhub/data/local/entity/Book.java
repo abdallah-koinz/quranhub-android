@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import app.quranhub.ui.mushaf.adapter.BookAdapter;
-import app.quranhub.ui.mushaf.network.model.BookContent;
+import app.quranhub.data.remote.model.BookContent;
 
 @Entity
 public class Book {

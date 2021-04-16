@@ -31,7 +31,7 @@ import app.quranhub.ui.mushaf.model.SuraIndexModelMapper;
 import app.quranhub.ui.mushaf.presenter.SuraGuz2IndexPresenter;
 import app.quranhub.ui.mushaf.presenter.SuraGuz2IndexPresenterImp;
 import app.quranhub.ui.mushaf.view.SuraGuz2IndexView;
-import app.quranhub.ui.settings.dialogs.OptionsListDialogFragment;
+import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.util.ScreenUtils;
 import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;

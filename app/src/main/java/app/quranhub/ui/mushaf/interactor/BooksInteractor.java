@@ -6,7 +6,7 @@ import java.util.List;
 
 import app.quranhub.data.local.entity.Book;
 import app.quranhub.ui.mushaf.model.TafseerModel;
-import app.quranhub.ui.mushaf.network.model.BookContent;
+import app.quranhub.data.remote.model.BookContent;
 
 public interface BooksInteractor {
 

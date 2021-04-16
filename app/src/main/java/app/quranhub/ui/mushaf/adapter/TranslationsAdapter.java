@@ -22,7 +22,7 @@ import java.util.List;
 import app.quranhub.R;
 import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.model.DisplayableTranslation;
-import app.quranhub.ui.mushaf.utils.NetworkUtil;
+import app.quranhub.util.NetworkUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -93,7 +93,7 @@ public class TranslationsAdapter extends RecyclerView.Adapter<TranslationsAdapte
         } else {
             // not downloaded
             holder.actionImageButton.setVisibility(View.VISIBLE);
-            holder.actionImageButton.setImageResource(R.drawable.download_action_green_ic);
+            holder.actionImageButton.setImageResource(R.drawable.ic_download);
             holder.downloadProgressBar.setVisibility(View.INVISIBLE);
             holder.downloadLevelProgressBar.setVisibility(View.INVISIBLE);
         }

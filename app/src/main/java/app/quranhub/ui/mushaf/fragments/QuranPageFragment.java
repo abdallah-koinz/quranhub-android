@@ -48,7 +48,7 @@ import app.quranhub.ui.mushaf.dialogs.AyaActionsDialog;
 import app.quranhub.ui.mushaf.model.BookmarkModel;
 import app.quranhub.ui.mushaf.presenter.QuranPagePresenter;
 import app.quranhub.ui.mushaf.presenter.QuranPagePresenterImp;
-import app.quranhub.ui.mushaf.utils.ImageUtil;
+import app.quranhub.util.ImageUtil;
 import app.quranhub.ui.mushaf.view.QuranPageView;
 import app.quranhub.util.FragmentUtils;
 import app.quranhub.util.GlideApp;

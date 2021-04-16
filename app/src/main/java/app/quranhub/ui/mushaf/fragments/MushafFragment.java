@@ -45,7 +45,7 @@ import app.quranhub.ui.mushaf.audio_manager.AudioStateEvent;
 import app.quranhub.ui.mushaf.audio_manager.AyaAudioService;
 import app.quranhub.ui.mushaf.audio_manager.SharedRepeatModel;
 import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
-import app.quranhub.ui.downloads_manager.network.QuranAudioDownloaderService;
+import app.quranhub.data.service.QuranAudioDownloaderService;
 import app.quranhub.ui.main.MainActivity;
 import app.quranhub.ui.mushaf.adapter.QuranViewPagerAdapter;
 import app.quranhub.data.local.entity.Aya;

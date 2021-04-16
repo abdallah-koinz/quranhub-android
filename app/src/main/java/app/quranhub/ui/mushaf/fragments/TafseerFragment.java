@@ -34,7 +34,7 @@ import app.quranhub.ui.mushaf.dialogs.OptionDialog;
 import app.quranhub.ui.mushaf.dialogs.TranslationsDialogFragment;
 import app.quranhub.ui.mushaf.model.TafseerModel;
 import app.quranhub.ui.mushaf.viewmodel.TafseerViewModel;
-import app.quranhub.ui.settings.dialogs.OptionsListDialogFragment;
+import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;

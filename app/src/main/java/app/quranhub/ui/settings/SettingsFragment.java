@@ -20,7 +20,7 @@ import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.ui.settings.custom.MushafSetting;
 import app.quranhub.ui.settings.custom.MushafSettingSwitch;
-import app.quranhub.ui.settings.dialogs.OptionsListDialogFragment;
+import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.LocaleUtils;
 import butterknife.BindView;

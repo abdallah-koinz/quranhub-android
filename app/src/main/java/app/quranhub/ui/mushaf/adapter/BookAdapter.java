@@ -17,7 +17,7 @@ import java.util.List;
 import app.quranhub.R;
 import app.quranhub.data.local.entity.Book;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
-import app.quranhub.ui.mushaf.network.model.BookContent;
+import app.quranhub.data.remote.model.BookContent;
 import app.quranhub.util.LocaleUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +58,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
             holder.translateIcon.setImageResource(R.drawable.check_gold_ic);
             changeIconType(false, holder);
         } else if (model.getDownloadStatus() == TRANSLATION_NOT_DOWNLOADED) {
-            holder.translateIcon.setImageResource(R.drawable.download_action_green_ic);
+            holder.translateIcon.setImageResource(R.drawable.ic_download);
             changeIconType(false, holder);
         } else if (model.getDownloadStatus() == TRANSLATION_DOWNLOADED_IN_PROGRESS) {
             changeIconType(true, holder);

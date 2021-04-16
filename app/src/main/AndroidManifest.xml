@@ -44,7 +44,7 @@
         </provider>
 
         <service
-            android:name=".ui.downloads_manager.network.QuranAudioDownloaderService"
+            android:name=".data.service.QuranAudioDownloaderService"
             android:enabled="true"
             android:exported="false" />
 

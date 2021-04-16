@@ -16,15 +16,11 @@ import java.util.List;
 import app.quranhub.R;
 import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
-import app.quranhub.ui.downloads_manager.network.api.RecitersApi;
-import app.quranhub.ui.downloads_manager.network.model.RecitersResponse;
-import app.quranhub.ui.downloads_manager.utils.QuranAudioDeleteUtils;
+import app.quranhub.util.QuranAudioDeleteUtils;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.data.local.entity.ReciterRecitation;
-import app.quranhub.ui.mushaf.network.ApiClient;
-import retrofit2.Call;
-import retrofit2.Response;
+import app.quranhub.data.remote.ApiClient;
 
 public class DownloadsRecitersFragment extends BaseDownloadsFragment
         implements DeleteConfirmationDialogFragment.DeleteConfirmationCallbacks {
@@ -67,21 +63,21 @@ public class DownloadsRecitersFragment extends BaseDownloadsFragment
 
         List<DisplayableDownload> displayableDownloadsList = new ArrayList<>();
 
-        RecitersApi recitersApi = ApiClient.getClient().create(RecitersApi.class);
-        Call<RecitersResponse> recitersCall = recitersApi.getQuranReciters(recitationId);
-        try {
-            Response<RecitersResponse> response = recitersCall.execute();
-            RecitersResponse recitersResponse = response.body();
-            if (recitersResponse != null) {
-                reciters = recitersResponse.getReciters();
-            } else {
-                Log.e(TAG, "recitersResponse is null!");
-                reciters = retrieveLocalReciters();
-            }
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to retrieve reciters from server.");
-            reciters = retrieveLocalReciters();
-        }
+//        RecitersApi recitersApi = ApiClient.getClient().create(RecitersApi.class);
+//        Call<RecitersResponse> recitersCall = recitersApi.getQuranReciters(recitationId);
+//        try {
+//            Response<RecitersResponse> response = recitersCall.execute();
+//            RecitersResponse recitersResponse = response.body();
+//            if (recitersResponse != null) {
+//                reciters = recitersResponse.getReciters();
+//            } else {
+//                Log.e(TAG, "recitersResponse is null!");
+//                reciters = retrieveLocalReciters();
+//            }
+//        } catch (IOException e) {
+//            Log.e(TAG, "Failed to retrieve reciters from server.");
+//            reciters = retrieveLocalReciters();
+//        }
 
         // process reciters list
         for (Reciter r : reciters) {

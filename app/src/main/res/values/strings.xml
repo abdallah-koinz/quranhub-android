@@ -534,20 +534,6 @@
     <string name="enter_bookmark_title">Please enter bookmark title</string>
     <string name="add">Add</string>
 
-    <!-- Quran reciterModels -->
-    <string name="reciter_afasy">Mashary Al-Afasy</string>
-    <string name="reciter_ayman">Ayman Sowayd</string>
-    <string name="reciter_basset">Abdel-Basset Abdel-Samad</string>
-    <string name="reciter_ghamdy">Saad Al-Ghamdy</string>
-    <string name="reciter_hussary">Al-Hussary</string>
-    <string name="reciter_huzaify">Al-Huzaify</string>
-    <string name="reciter_maher">Maher Almuaiqly</string>
-    <string name="reciter_minshawy">Al-Minshawy</string>
-    <string name="reciter_sudais">Abdul-Rahman Al-Sudais</string>
-    <string name="reciter_dossary">Ibrahim Al-Dossary</string>
-    <string name="reciter_yassin">Yassin Elgazaery</string>
-    <!---->
-
     <string name="title_dialog_quran_reciter">Choose Quran reciterModel</string>
     <string name="msg_downloaded_reciters_only">Displaying only previously downloaded reciterModels</string>
     <string name="msg_internet_connection_failed">Internet connection failed</string>

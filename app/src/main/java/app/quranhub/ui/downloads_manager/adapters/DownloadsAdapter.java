@@ -107,7 +107,7 @@ public class DownloadsAdapter extends RecyclerView.Adapter<DownloadsAdapter.View
                 }
             } else {  // download mode
                 if (displayableDownload.isDownloadable()) {
-                    actionImageButton.setImageResource(R.drawable.download_action_green_ic);
+                    actionImageButton.setImageResource(R.drawable.ic_download);
                     actionImageButton.setVisibility(View.VISIBLE);
                 } else {
                     actionImageButton.setVisibility(View.INVISIBLE);

@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:background="?selectableItemBackgroundBorderless"
         android:padding="@dimen/_6sdp"
-        android:src="@drawable/download_action_green_ic"
+        android:src="@drawable/ic_download"
         app:layout_constraintBottom_toBottomOf="@id/translation_tv"
         app:layout_constraintEnd_toEndOf="@+id/download_progress"
         app:layout_constraintStart_toStartOf="@+id/download_progress"

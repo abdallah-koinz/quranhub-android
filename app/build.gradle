@@ -98,6 +98,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'com.mindorks.android:prdownloader:0.6.0'
+    implementation project(path: ':prdownloader-service')
 
     // Room
     implementation 'androidx.room:room-runtime:2.2.6'

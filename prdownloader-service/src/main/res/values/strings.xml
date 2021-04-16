@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="download_notification_title_quran_audio">Files Download</string>
+    <string name="download_notification_content_text">Download in progress</string>
+    <string name="download_notification_cancel_button_title">Cancel</string>
+
+    <string name="download_service_notification_channel_name">File downloads</string>
+    <string name="download_service_notification_channel_description">Notifications about ongoing file downloads</string>
+</resources>

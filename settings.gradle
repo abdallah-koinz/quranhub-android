@@ -1,2 +1,3 @@
+include ':prdownloader-service'
 rootProject.name='QuranHub'
 include ':app'
