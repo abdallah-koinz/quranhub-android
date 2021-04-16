@@ -10,20 +10,28 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.Constants;
+import app.quranhub.data.model.ReciterModel;
 import app.quranhub.ui.base.BaseActivity;
 import app.quranhub.ui.downloads_manager.DownloadsManagerActivity;
 import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.ui.settings.custom.MushafSetting;
 import app.quranhub.ui.settings.custom.MushafSettingSwitch;
 import app.quranhub.ui.settings.dialogs.OptionsListDialogFragment;
-import app.quranhub.util.LocaleUtils;
 import app.quranhub.util.AppPreferencesUtils;
+import app.quranhub.util.LocaleUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Single;
+import io.reactivex.SingleOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class SettingsFragment extends Fragment implements OptionsListDialogFragment.ItemSelectionListener
@@ -62,6 +70,8 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
 
     private Unbinder butterknifeUnbinder;
 
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     public SettingsFragment() {
         // required private constructor
     }
@@ -80,6 +90,7 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
     public void onDestroyView() {
         super.onDestroyView();
         butterknifeUnbinder.unbind();
+        compositeDisposable.dispose();
     }
 
     private void initSettingsViews() {
@@ -110,9 +121,20 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
         // quranReaderSetting
         String reciterId = AppPreferencesUtils.getReciterSheikhSetting(requireContext());
         if (reciterId != null) {
-            quranReaderSetting.setCurrentValue(Sheikh.getLocalizedName(requireContext(), reciterId));
+            final Disposable disposable = Single.create(
+                    (SingleOnSubscribe<String>) emitter -> {
+                        final Reciter reciter = UserDatabase.getInstance(requireContext())
+                                .getReciterDao()
+                                .getById(reciterId);
+                        emitter.onSuccess(reciter.getName());
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(reciterName -> {
+                        quranReaderSetting.setCurrentValue(reciterName);
+                    });
+            compositeDisposable.add(disposable);
         }
-
     }
 
     private void setSettingsViewsListeners() {
@@ -236,7 +258,7 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
     }
 
     @Override
-    public void onReciterSelected(int recitationId, @NonNull Sheikh reciter) {
+    public void onReciterSelected(int recitationId, @NonNull ReciterModel reciter) {
         Log.d(TAG, "onReciterSelected: recitationId=" + recitationId + " , reciterId=" + reciter.getId());
 
         AppPreferencesUtils.persistReciterSheikhSetting(requireContext(), reciter.getId());

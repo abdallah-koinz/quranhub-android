@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.utils.NetworkUtil;
 
 public class TranslationsResponse {

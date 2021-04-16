@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.AyaBookmark;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.AyaBookmark;
+import app.quranhub.data.local.entity.BookmarkType;
+import app.quranhub.data.local.entity.Note;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;

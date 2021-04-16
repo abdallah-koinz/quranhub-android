@@ -13,8 +13,8 @@ import com.downloader.PRDownloader;
 import java.io.File;
 
 import app.quranhub.data.Constants;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.utils.NetworkUtil;
 
 public class TranslationDownloader {

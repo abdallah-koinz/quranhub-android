@@ -40,6 +40,7 @@ import java.util.Objects;
 
 import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.model.ReciterModel;
 import app.quranhub.ui.mushaf.audio_manager.AudioStateEvent;
 import app.quranhub.ui.mushaf.audio_manager.AyaAudioService;
 import app.quranhub.ui.mushaf.audio_manager.SharedRepeatModel;
@@ -47,9 +48,8 @@ import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
 import app.quranhub.ui.downloads_manager.network.QuranAudioDownloaderService;
 import app.quranhub.ui.main.MainActivity;
 import app.quranhub.ui.mushaf.adapter.QuranViewPagerAdapter;
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.dialogs.AyaAudioPopup;
 import app.quranhub.ui.mushaf.dialogs.AyaRecorderDialog;
 import app.quranhub.ui.mushaf.dialogs.AyaRecorderPlayerDialog;
@@ -1027,7 +1027,7 @@ public class MushafFragment extends Fragment implements MushafView, MushafBottom
     }
 
     @Override
-    public void onReciterSelected(int recitationId, @NonNull Sheikh reciter) {
+    public void onReciterSelected(int recitationId, @NonNull ReciterModel reciter) {
         setCurrentQuranPageFragment();
         quranPageFragment.onListenClick();
     }

@@ -2,8 +2,8 @@ package app.quranhub.ui.mushaf.interactor;
 
 import java.util.ArrayList;
 
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.model.QuranPageInfo;
 import app.quranhub.ui.mushaf.model.SuraVersesNumber;
 

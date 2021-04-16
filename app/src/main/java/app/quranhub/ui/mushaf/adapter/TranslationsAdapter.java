@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.model.DisplayableTranslation;
 import app.quranhub.ui.mushaf.utils.NetworkUtil;
 import butterknife.BindView;

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.Book;
+import app.quranhub.data.local.entity.Book;
 import app.quranhub.ui.mushaf.model.TafseerModel;
 import app.quranhub.ui.mushaf.network.model.BookContent;
 

@@ -2,7 +2,7 @@ package app.quranhub.ui.mushaf.presenter;
 
 import app.quranhub.ui.base.BasePresenter;
 import app.quranhub.ui.base.BaseView;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.TranslationBook;
 
 public interface Mus7fPresenter<T extends BaseView> extends BasePresenter<T> {
 

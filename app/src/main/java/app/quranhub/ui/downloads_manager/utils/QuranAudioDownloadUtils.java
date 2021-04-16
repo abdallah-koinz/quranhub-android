@@ -28,7 +28,9 @@ public final class QuranAudioDownloadUtils {
              /{recitation_key}/sound/{sheikh_id}/{filename}
         */
 
-        StringBuilder sb = new StringBuilder(File.separator);
+        StringBuilder sb = new StringBuilder();
+        sb.append("/quran/audio/");
+
 
         // recitation part
         if (recitationId == Constants.Recitation.HAFS_ID)
@@ -36,16 +38,12 @@ public final class QuranAudioDownloadUtils {
         else if (recitationId == Constants.Recitation.WARSH_ID)
             sb.append(Constants.Recitation.WARSH_KEY);
         else return null;
-        sb.append(File.separator);
+        sb.append("/");
 
-
-        sb.append("sound");
-        sb.append(File.separator);
-
-        // sheikh part
+        // reciter part
         if (sheikhId != null) sb.append(sheikhId);
         else return null;
-        sb.append(File.separator);
+        sb.append("/");
 
         // file name part
         String fileName = QuranAudioFileUtils.getFileName(sura, aya);

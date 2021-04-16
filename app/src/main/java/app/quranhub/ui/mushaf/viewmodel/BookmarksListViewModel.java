@@ -13,9 +13,9 @@ import androidx.lifecycle.MediatorLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.dao.HizbQuarterDao;
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
+import app.quranhub.data.local.dao.HizbQuarterDao;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.entity.BookmarkType;
 import app.quranhub.ui.mushaf.interactor.BookmarksInteractor;
 import app.quranhub.ui.mushaf.interactor.BookmarksInteractorImp;
 import app.quranhub.ui.mushaf.model.DisplayableBookmark;

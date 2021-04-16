@@ -3,7 +3,6 @@ package app.quranhub.ui.downloads_manager.dialogs;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -28,25 +27,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.ui.downloads_manager.network.api.RecitersApi;
-import app.quranhub.ui.downloads_manager.network.model.RecitersResponse;
-import app.quranhub.ui.mushaf.data.dao.SheikhDao;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
-import app.quranhub.ui.mushaf.network.ApiClient;
+import app.quranhub.data.Constants;
+import app.quranhub.data.model.ReciterModel;
+import app.quranhub.data.repository.RecitationsRepository;
+import app.quranhub.data.local.dao.ReciterDao;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.ui.settings.dialogs.OptionsListAdapter;
+import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.DialogUtils;
 import app.quranhub.util.FragmentUtils;
-import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableSingleObserver;
 
 /**
  * A {@code DialogFragment} that displays the available Quran reciters for the user to choose from.
@@ -87,8 +86,10 @@ public class QuranRecitersDialogFragment extends DialogFragment
 
     private ReciterSelectionListener reciterSelectionListener;
 
-    private Call<RecitersResponse> recitersWebCall;
-    private List<Sheikh> reciters;
+    private final RecitationsRepository recitationsRepository = new RecitationsRepository();
+    private List<ReciterModel> reciterModels;
+
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public QuranRecitersDialogFragment() {
         // Required empty public constructor
@@ -124,7 +125,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof ReciterSelectionListener) {
             reciterSelectionListener = (ReciterSelectionListener) context;
@@ -172,10 +173,10 @@ public class QuranRecitersDialogFragment extends DialogFragment
     }
 
     private void setupRecitersRecyclerView() {
-        if (reciters != null) {
+        if (reciterModels != null) {
             List<String> recitersNames = new ArrayList<>();
-            for (int i = 0; i < reciters.size(); i++) {
-                Sheikh r = reciters.get(i);
+            for (int i = 0; i < reciterModels.size(); i++) {
+                ReciterModel r = reciterModels.get(i);
                 recitersNames.add(r.getLocalizedName(requireContext()));
                 if (r.getId().equals(selectedReciterId)) {
                     selectedReciterIndex = i;
@@ -201,63 +202,84 @@ public class QuranRecitersDialogFragment extends DialogFragment
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onStart() {
+        super.onStart();
 
-        RecitersApi recitersApi = ApiClient.getClient().create(RecitersApi.class);
-        recitersWebCall = recitersApi.getQuranReciters(recitationId);
-        recitersWebCall.enqueue(new Callback<RecitersResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<RecitersResponse> call,
-                                   @NonNull Response<RecitersResponse> response) {
+        String recitationKey = null;
+        if (recitationId == Constants.Recitation.HAFS_ID)
+            recitationKey = Constants.Recitation.HAFS_KEY;
+        else if (recitationId == Constants.Recitation.WARSH_ID)
+            recitationKey = Constants.Recitation.WARSH_KEY;
 
-                if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
-                    RecitersResponse recitersResponse = response.body();
-                    if (recitersResponse != null) {
-                        reciters = recitersResponse.getReciters();
-                        setupRecitersRecyclerView();
-                    } else {
-                        Log.e(TAG, "RecitersApi#getQuranReciters service response body is null");
-                        Toast.makeText(requireContext(), getString(R.string.error_general), Toast.LENGTH_SHORT).show();
+        Disposable disposable = recitationsRepository.getRecitersForRecitation(recitationKey)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<List<ReciterModel>>() {
+                    @Override
+                    public void onSuccess(@NonNull List<ReciterModel> reciters) {
+                        Log.d(TAG, "reciters: " + reciters);
+
+                        if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
+                            if (reciters.size() > 0) {
+                                QuranRecitersDialogFragment.this.reciterModels = reciters;
+                                setupRecitersRecyclerView();
+                            } else {
+                                Log.e(TAG, "The fetched reciters list is empty!");
+                                Toast.makeText(requireContext(), R.string.no_reciters,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
 
-                    progressBar.setVisibility(View.GONE);
-                }
-            }
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.e(TAG, "Error fetching reciters", e);
 
-            @Override
-            public void onFailure(@NonNull Call<RecitersResponse> call, @NonNull Throwable t) {
-                Log.e(TAG, "RecitersApi#getQuranReciters service call failed");
-                if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
+                        if (FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
 
-                    // try to display the downloaded reciters
-                    loadRecitersFromDb();
+                            // try to display the downloaded reciters
+                            loadRecitersFromDb();
 
-                }
-            }
-        });
+                        }
+                    }
+                });
+        compositeDisposable.add(disposable);
     }
 
     @SuppressLint("StaticFieldLeak")
     private void loadRecitersFromDb() {
         // TODO load from DB only for a selected aya, or page or sura, to guarantee reciter is downloaded
-        new AsyncTask<Void, Void, List<Sheikh>>() {
+        new AsyncTask<Void, Void, List<ReciterModel>>() {
 
             @Override
-            protected List<Sheikh> doInBackground(Void... voids) {
+            protected List<ReciterModel> doInBackground(Void... voids) {
                 if (getContext() != null) {
-                    SheikhDao sheikhDao = UserDatabase.getInstance(getContext()).getSheikhDao();
-                    return sheikhDao.getAllForRecitation(recitationId);
+                    ReciterDao reciterDao = UserDatabase.getInstance(getContext()).getReciterDao();
+                    final List<Reciter> recitersList = reciterDao.getAllForRecitation(recitationId);
+
+                    // Convert from Reciter to ReciterModel
+                    final List<ReciterModel> reciterModelsList = new ArrayList<>(recitersList.size());
+                    for (Reciter r : recitersList) {
+                        reciterModelsList.add(new ReciterModel(
+                                r.getId(),
+                                r.getName(),
+                                r.getNationality(),
+                                r.getAudioBaseUrl()
+                        ));
+                    }
+                    return reciterModelsList;
                 }
                 return null;
             }
 
             @Override
-            protected void onPostExecute(List<Sheikh> recitersList) {
+            protected void onPostExecute(List<ReciterModel> recitersList) {
                 if (recitersList != null &&
                         FragmentUtils.isSafeFragment(QuranRecitersDialogFragment.this)) {
-                    reciters = recitersList;
-                    if (reciters.size() > 0) {
+                    reciterModels = recitersList;
+                    if (reciterModels.size() > 0) {
                         downloadedRecitersOnlyMsgTextView.setVisibility(View.VISIBLE);
                         setupRecitersRecyclerView();
                     } else {
@@ -285,7 +307,7 @@ public class QuranRecitersDialogFragment extends DialogFragment
     @SuppressLint("StaticFieldLeak")
     @OnClick(R.id.btn_select)
     void onSelectClick() {
-        Sheikh selectedReciter = reciters.get(selectedReciterIndex);
+        ReciterModel selectedReciterModel = reciterModels.get(selectedReciterIndex);
 
         new AsyncTask<Void, Void, Void>() {
 
@@ -300,15 +322,19 @@ public class QuranRecitersDialogFragment extends DialogFragment
 
                     // Store selected reciter in DB
                     UserDatabase userDatabase = UserDatabase.getInstance(requireContext());
-                    if (userDatabase.getSheikhDao().getById(selectedReciter.getId()) == null) {
-                        userDatabase.getSheikhDao()
-                                .insert(selectedReciter);
+                    if (userDatabase.getReciterDao().getById(selectedReciterModel.getId()) == null) {
+                        userDatabase.getReciterDao().insert(
+                                new Reciter(selectedReciterModel.getId(),
+                                        selectedReciterModel.getLocalizedName(requireContext()),
+                                        selectedReciterModel.getLocalizedNationality(requireContext()),
+                                        selectedReciterModel.getAudioBaseUrl())
+                        );
                     }
 
                     // persist selected reciter as preference if recitation id matches the one in preferences
                     int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(requireContext());
                     if (recitationIdPreference == recitationId) {
-                        AppPreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciter.getId());
+                        AppPreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciterModel.getId());
                     }
                 }
                 return null;
@@ -316,17 +342,16 @@ public class QuranRecitersDialogFragment extends DialogFragment
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                reciterSelectionListener.onReciterSelected(recitationId, selectedReciter);
+                reciterSelectionListener.onReciterSelected(recitationId, selectedReciterModel);
                 dismiss();
             }
         }.execute();
     }
 
     @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
-
-        if (recitersWebCall != null) recitersWebCall.cancel();
+    public void onStop() {
+        super.onStop();
+        compositeDisposable.dispose();
     }
 
     @Override
@@ -347,6 +372,6 @@ public class QuranRecitersDialogFragment extends DialogFragment
      * to the activity or parent fragment.
      */
     public interface ReciterSelectionListener {
-        void onReciterSelected(int recitationId, @NonNull Sheikh reciter);
+        void onReciterSelected(int recitationId, @NonNull ReciterModel reciterModel);
     }
 }

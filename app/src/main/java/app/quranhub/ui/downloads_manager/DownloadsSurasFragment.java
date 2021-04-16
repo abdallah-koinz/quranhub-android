@@ -17,9 +17,8 @@ import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragmen
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
 import app.quranhub.ui.downloads_manager.network.QuranAudioDownloaderService;
 import app.quranhub.ui.downloads_manager.utils.QuranAudioDeleteUtils;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
-import app.quranhub.ui.mushaf.data.entity.SheikhRecitation;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.ReciterRecitation;
 import app.quranhub.util.AppPreferencesUtils;
 
 public class DownloadsSurasFragment extends BaseDownloadsFragment
@@ -119,14 +118,14 @@ public class DownloadsSurasFragment extends BaseDownloadsFragment
             @Override
             protected Void doInBackground(Void... voids) {
                 UserDatabase userDatabase = UserDatabase.getInstance(requireContext());
-                if (userDatabase.getSheikhDao().getById(reciterId) == null) {
-                    userDatabase.getSheikhDao()
-                            .insert(new Sheikh(reciterId, reciterName));
+                if (userDatabase.getReciterDao().getById(reciterId) == null) {
+//                    userDatabase.getReciterDao()
+//                            .insert(new Reciter(reciterId, reciterName));
                 }
-                if (userDatabase.getSheikhRecitationDao()
+                if (userDatabase.getReciterRecitationDao()
                         .get(recitationId, reciterId) == null) {
-                    userDatabase.getSheikhRecitationDao()
-                            .insert(new SheikhRecitation(recitationId, reciterId));
+                    userDatabase.getReciterRecitationDao()
+                            .insert(new ReciterRecitation(recitationId, reciterId));
                 }
 
                 int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(requireContext());

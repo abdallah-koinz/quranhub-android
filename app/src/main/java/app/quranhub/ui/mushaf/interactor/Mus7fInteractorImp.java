@@ -9,10 +9,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 import app.quranhub.data.Constants;
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.db.TranslationDatabase;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.AyaRecorder;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.db.TranslationDatabase;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.AyaRecorder;
 import app.quranhub.ui.mushaf.model.SuraVersesNumber;
 import app.quranhub.util.AppPreferencesUtils;
 import io.reactivex.Completable;

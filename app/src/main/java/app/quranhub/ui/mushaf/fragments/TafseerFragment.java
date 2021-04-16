@@ -29,7 +29,7 @@ import java.util.List;
 import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.ui.mushaf.adapter.TafseerAdapter;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.dialogs.OptionDialog;
 import app.quranhub.ui.mushaf.dialogs.TranslationsDialogFragment;
 import app.quranhub.ui.mushaf.model.TafseerModel;

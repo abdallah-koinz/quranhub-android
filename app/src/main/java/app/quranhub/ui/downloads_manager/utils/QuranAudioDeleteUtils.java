@@ -8,9 +8,9 @@ import androidx.annotation.NonNull;
 import java.io.File;
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.QuranAudio;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.QuranAudio;
+import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.util.AppPreferencesUtils;
 
 public final class QuranAudioDeleteUtils {
@@ -36,9 +36,9 @@ public final class QuranAudioDeleteUtils {
 
                 // 2. delete from DB
                 UserDatabase userDatabase = UserDatabase.getInstance(context);
-                List<Sheikh> reciters = userDatabase.getSheikhRecitationDao()
+                List<Reciter> reciters = userDatabase.getReciterRecitationDao()
                         .getRecitersForRecitation(recitationId);
-                userDatabase.getSheikhDao().deleteAll(reciters.toArray(new Sheikh[0]));
+                userDatabase.getReciterDao().deleteAll(reciters.toArray(new Reciter[0]));
 
                 // 3. delete reciter preference if same recitation
                 int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(context);
@@ -77,7 +77,7 @@ public final class QuranAudioDeleteUtils {
 
                 // 2. delete from DB
                 UserDatabase userDatabase = UserDatabase.getInstance(context);
-                userDatabase.getSheikhRecitationDao().delete(recitationId, reciterId);
+                userDatabase.getReciterRecitationDao().delete(recitationId, reciterId);
                 // TODO delete also the reciter if he has no suras in any recitation
 
                 return null;

@@ -3,7 +3,7 @@ package app.quranhub.ui.mushaf.model;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.TranslationBook;
 
 public class DisplayableTranslation {
 

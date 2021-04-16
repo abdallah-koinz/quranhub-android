@@ -4,10 +4,10 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.AyaBookmark;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.AyaBookmark;
+import app.quranhub.data.local.entity.BookmarkType;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.model.BookmarkModel;
 
 public interface QuranPageInteractor {

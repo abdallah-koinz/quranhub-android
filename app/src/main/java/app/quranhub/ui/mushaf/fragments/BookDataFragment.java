@@ -41,7 +41,7 @@ import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.ui.main.MainActivity;
 import app.quranhub.ui.mushaf.adapter.BookAdapter;
-import app.quranhub.ui.mushaf.data.entity.Book;
+import app.quranhub.data.local.entity.Book;
 import app.quranhub.ui.mushaf.dialogs.OpenFileDialog;
 import app.quranhub.ui.mushaf.network.BookDownloadManager;
 import app.quranhub.ui.mushaf.network.model.BookContent;

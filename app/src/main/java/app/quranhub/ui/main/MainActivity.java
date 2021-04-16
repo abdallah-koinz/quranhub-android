@@ -11,13 +11,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.mikepenz.materialdrawer.Drawer;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.audio_manager.AyaAudioService;
+import app.quranhub.data.Constants;
 import app.quranhub.ui.base.BaseActivity;
-import app.quranhub.data.repository.RecitationsRepository;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.downloads_manager.DownloadsManagerActivity;
 import app.quranhub.ui.first_wizard.FirstTimeWizardActivity;
+import app.quranhub.ui.mushaf.audio_manager.AyaAudioService;
 import app.quranhub.ui.mushaf.fragments.BookmarksFragment;
 import app.quranhub.ui.mushaf.fragments.BooksLibraryFragment;
 import app.quranhub.ui.mushaf.fragments.MushafFragment;
@@ -31,13 +31,14 @@ import app.quranhub.ui.mushaf.fragments.TopicAyasFragment;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.ui.mushaf.model.TopicCategory;
 import app.quranhub.ui.settings.SettingsActivity;
+import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.DrawerUtils;
 import app.quranhub.util.SharedPrefsUtils;
-import app.quranhub.util.AppPreferencesUtils;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 
 public class MainActivity extends BaseActivity
         implements ToolbarActionsListener, DrawerUtils.Mus7afDrawerItemClickListener, QuranNavigationCallbacks {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private Drawer drawer;
     private String currentFragment;
@@ -65,10 +66,6 @@ public class MainActivity extends BaseActivity
         } else {
             setCurrentFragmentData(savedInstanceState.getString("fragment"));
         }
-
-        // TODO remove this
-        RecitationsRepository recitationsRepository = new RecitationsRepository();
-        recitationsRepository.getRecitersForRecitation("hafs");
     }
 
     private void observeOnDrawerOpen() {

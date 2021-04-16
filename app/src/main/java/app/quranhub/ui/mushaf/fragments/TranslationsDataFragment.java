@@ -24,8 +24,8 @@ import java.util.List;
 
 import app.quranhub.R;
 import app.quranhub.ui.mushaf.adapter.TranslationsAdapter;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.model.DisplayableTranslation;
 import app.quranhub.ui.mushaf.network.ApiClient;
 import app.quranhub.ui.mushaf.network.TranslationDownloader;

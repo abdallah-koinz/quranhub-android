@@ -28,7 +28,7 @@ import java.util.Objects;
 
 import app.quranhub.R;
 import app.quranhub.ui.mushaf.adapter.BookmarkTypeAdapter;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
+import app.quranhub.data.local.entity.BookmarkType;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import app.quranhub.util.DialogUtils;
 import butterknife.BindView;

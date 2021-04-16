@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import app.quranhub.R;
 import app.quranhub.ui.mushaf.adapter.NotesAdapter;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.dialogs.AddNoteDialog;
 import app.quranhub.ui.mushaf.dialogs.NotesFilterDialog;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;

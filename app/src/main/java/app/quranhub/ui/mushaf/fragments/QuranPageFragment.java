@@ -35,13 +35,13 @@ import java.util.List;
 
 import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.model.ReciterModel;
 import app.quranhub.ui.downloads_manager.dialogs.AudioDownloadAmountDialogFragment;
 import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.AyaBookmark;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
-import app.quranhub.ui.mushaf.data.entity.Note;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.AyaBookmark;
+import app.quranhub.data.local.entity.BookmarkType;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.dialogs.AddBookmarkDialog;
 import app.quranhub.ui.mushaf.dialogs.AddNoteDialog;
 import app.quranhub.ui.mushaf.dialogs.AyaActionsDialog;
@@ -918,7 +918,7 @@ public class QuranPageFragment extends Fragment
     }
 
     @Override
-    public void onReciterSelected(int recitationId, @NonNull Sheikh reciter) {
+    public void onReciterSelected(int recitationId, @NonNull ReciterModel reciter) {
         openDownloadAmountDialog(reciter.getId());
     }
 

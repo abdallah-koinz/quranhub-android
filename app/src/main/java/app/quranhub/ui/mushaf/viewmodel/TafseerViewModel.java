@@ -9,7 +9,7 @@ import androidx.lifecycle.MediatorLiveData;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.Translation;
+import app.quranhub.data.local.entity.Translation;
 import app.quranhub.ui.mushaf.interactor.TafseerInteractor;
 import app.quranhub.ui.mushaf.interactor.TafseerInteractorImp;
 import app.quranhub.ui.mushaf.model.TafseerModel;

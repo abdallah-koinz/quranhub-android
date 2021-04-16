@@ -10,9 +10,9 @@ import androidx.lifecycle.LiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Book;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Book;
 import app.quranhub.ui.mushaf.model.TafseerModel;
 import app.quranhub.ui.mushaf.network.ApiClient;
 import app.quranhub.ui.mushaf.network.api.BooksApi;

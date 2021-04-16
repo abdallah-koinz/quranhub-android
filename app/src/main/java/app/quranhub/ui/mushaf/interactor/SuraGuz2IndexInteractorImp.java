@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
+import app.quranhub.data.local.db.MushafDatabase;
 import app.quranhub.ui.mushaf.model.SuraIndexModel;
 import app.quranhub.ui.mushaf.model.SuraIndexModelMapper;
 import io.reactivex.android.schedulers.AndroidSchedulers;

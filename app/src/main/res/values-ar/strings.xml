@@ -526,7 +526,7 @@
     <string name="enter_bookmark_title">من فضلك ادخل اسم الفاصل</string>
     <string name="add">اضف</string>
 
-    <!-- Quran reciters -->
+    <!-- Quran reciterModels -->
     <string name="reciter_afasy">مشاري العفاسي</string>
     <string name="reciter_ayman">أيمن سويد</string>
     <string name="reciter_basset">عبدالباسط عبدالصمد</string>
@@ -545,6 +545,7 @@
     <string name="msg_internet_connection_failed">تعذَّر الاتصال بالإنترنت</string>
     <string name="select">اختيار</string>
     <string name="error_general">حدث خطأ ما!</string>
+    <string name="no_reciters">لا يوجد قرّاء للرواية المختارة!</string>
     <string name="description_manage_recitations_downloads">إدارة ملفات الصوتيات الخاصة بروايات القرآن. قم باختيار رواية لعرض وإدارة القرّاء المتاحين لها.</string>
     <string name="description_manage_reciters_downloads">إدارة ملفات الصوتيات الخاصة بقرّاء القرآن. قم باختيار قارئ لعرض وإدارة السور منفصلةً.</string>
     <string name="description_manage_suras_downloads">إدارة ملفات الصوتيات الخاصة بسور القرآن.</string>

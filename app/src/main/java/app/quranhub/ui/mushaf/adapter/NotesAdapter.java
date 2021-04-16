@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.model.DisplayedNote;
 import butterknife.BindView;
 import butterknife.ButterKnife;

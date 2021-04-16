@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.model.DisplayedNote;
 
 public interface NotesInteractor {

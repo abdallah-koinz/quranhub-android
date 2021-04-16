@@ -4,23 +4,23 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
+import app.quranhub.data.local.entity.Reciter;
 
 public class RecitersResponse {
 
     @NonNull
-    private List<Sheikh> reciters;
+    private List<Reciter> reciters;
 
-    public RecitersResponse(@NonNull List<Sheikh> reciters) {
+    public RecitersResponse(@NonNull List<Reciter> reciters) {
         this.reciters = reciters;
     }
 
     @NonNull
-    public List<Sheikh> getReciters() {
+    public List<Reciter> getReciters() {
         return reciters;
     }
 
-    public void setReciters(@NonNull List<Sheikh> reciters) {
+    public void setReciters(@NonNull List<Reciter> reciters) {
         this.reciters = reciters;
     }
 

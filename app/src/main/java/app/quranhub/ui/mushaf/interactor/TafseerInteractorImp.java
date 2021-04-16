@@ -7,9 +7,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.db.TranslationDatabase;
-import app.quranhub.ui.mushaf.data.entity.Translation;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.db.TranslationDatabase;
+import app.quranhub.data.local.entity.Translation;
 import app.quranhub.ui.mushaf.model.TafseerModel;
 
 public class TafseerInteractorImp implements TafseerInteractor {

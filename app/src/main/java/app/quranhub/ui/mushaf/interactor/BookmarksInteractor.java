@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.AyaBookmark;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
-import app.quranhub.ui.mushaf.data.entity.Sura;
+import app.quranhub.data.local.entity.AyaBookmark;
+import app.quranhub.data.local.entity.BookmarkType;
+import app.quranhub.data.local.entity.Sura;
 import app.quranhub.ui.mushaf.model.DisplayableBookmark;
 
 public interface BookmarksInteractor {

@@ -19,9 +19,9 @@ import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
 import app.quranhub.ui.downloads_manager.network.api.RecitersApi;
 import app.quranhub.ui.downloads_manager.network.model.RecitersResponse;
 import app.quranhub.ui.downloads_manager.utils.QuranAudioDeleteUtils;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
-import app.quranhub.ui.mushaf.data.entity.SheikhRecitation;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Reciter;
+import app.quranhub.data.local.entity.ReciterRecitation;
 import app.quranhub.ui.mushaf.network.ApiClient;
 import retrofit2.Call;
 import retrofit2.Response;
@@ -35,7 +35,7 @@ public class DownloadsRecitersFragment extends BaseDownloadsFragment
 
     private int recitationId;
 
-    private List<Sheikh> reciters;
+    private List<Reciter> reciters;
 
     public static DownloadsRecitersFragment newInstance(@NonNull Context context, int recitationId) {
         return newInstance(context, recitationId, false);
@@ -84,13 +84,13 @@ public class DownloadsRecitersFragment extends BaseDownloadsFragment
         }
 
         // process reciters list
-        for (Sheikh r : reciters) {
+        for (Reciter r : reciters) {
             UserDatabase userDatabase = UserDatabase.getInstance(requireContext());
 
             DisplayableDownload displayableDownload = new DisplayableDownload(
-                    r.getLocalizedName(requireContext()));
+                    r.getName());
 
-            List<Integer> downloadedSurasIds = userDatabase.getSheikhRecitationDao()
+            List<Integer> downloadedSurasIds = userDatabase.getReciterRecitationDao()
                     .getSurasIdsForReciterInRecitation(recitationId, r.getId());
             displayableDownload.setDownloadedAmount(
                     getString(R.string.downloaded_amount_suras, downloadedSurasIds.size()));
@@ -104,15 +104,15 @@ public class DownloadsRecitersFragment extends BaseDownloadsFragment
         return displayableDownloadsList;
     }
 
-    private List<Sheikh> retrieveLocalReciters() {
+    private List<Reciter> retrieveLocalReciters() {
         return UserDatabase.getInstance(requireContext())
-                .getSheikhDao().getAllForRecitation(recitationId);
+                .getReciterDao().getAllForRecitation(recitationId);
     }
 
     @Override
     public void onClickItem(DisplayableDownload displayableDownload, int position) {
-        Sheikh reciter = reciters.get(position);
-        navigationCallbacks.gotoDownloadsSuras(recitationId, reciter.getId(), reciter.getArName());
+        Reciter reciter = reciters.get(position);
+        navigationCallbacks.gotoDownloadsSuras(recitationId, reciter.getId(), reciter.getName());
     }
 
     @Override
@@ -132,18 +132,18 @@ public class DownloadsRecitersFragment extends BaseDownloadsFragment
     @SuppressLint("StaticFieldLeak")
     @Override
     public void onDownloadItem(DisplayableDownload displayableDownload, int position) {
-        Sheikh reciter = reciters.get(position);
+        Reciter reciter = reciters.get(position);
         new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
                 UserDatabase userDatabase = UserDatabase.getInstance(requireContext());
-                if (userDatabase.getSheikhDao().getById(reciter.getId()) == null) {
-                    userDatabase.getSheikhDao().insert(reciter);
+                if (userDatabase.getReciterDao().getById(reciter.getId()) == null) {
+                    userDatabase.getReciterDao().insert(reciter);
                 }
-                if (userDatabase.getSheikhRecitationDao().get(recitationId, reciter.getId()) == null) {
-                    userDatabase.getSheikhRecitationDao().insert(
-                            new SheikhRecitation(recitationId, reciter.getId()));
+                if (userDatabase.getReciterRecitationDao().get(recitationId, reciter.getId()) == null) {
+                    userDatabase.getReciterRecitationDao().insert(
+                            new ReciterRecitation(recitationId, reciter.getId()));
                 }
                 return null;
             }

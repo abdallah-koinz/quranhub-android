@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.Aya;
+import app.quranhub.data.local.entity.Aya;
 import app.quranhub.ui.mushaf.model.RepeatModel;
 import app.quranhub.ui.mushaf.model.SuraVersesNumber;
 import app.quranhub.util.DialogUtils;

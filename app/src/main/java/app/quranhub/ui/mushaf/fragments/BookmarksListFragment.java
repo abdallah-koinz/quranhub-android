@@ -21,7 +21,7 @@ import java.util.List;
 
 import app.quranhub.R;
 import app.quranhub.ui.mushaf.adapter.BookmarksAdapter;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
+import app.quranhub.data.local.entity.BookmarkType;
 import app.quranhub.ui.mushaf.dialogs.BookmarkEditDialog;
 import app.quranhub.ui.mushaf.listener.BookmarksListListener;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;

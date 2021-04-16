@@ -11,9 +11,9 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.model.DisplayedNote;
 import app.quranhub.ui.mushaf.model.MyNoteModel;
 import io.reactivex.Completable;

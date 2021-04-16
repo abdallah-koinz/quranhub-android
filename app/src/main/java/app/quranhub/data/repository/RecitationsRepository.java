@@ -1,13 +1,14 @@
 package app.quranhub.data.repository;
 
-import android.util.Log;
+import androidx.annotation.NonNull;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-import app.quranhub.data.model.Reciter;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
+import app.quranhub.data.model.ReciterModel;
+import io.reactivex.Single;
+import io.reactivex.SingleOnSubscribe;
 
 public class RecitationsRepository {
 
@@ -15,19 +16,22 @@ public class RecitationsRepository {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public List<Sheikh> getRecitersForRecitation(String recitationKey) {
-        db.collection("recitations")
-                .document(recitationKey)
-                .collection("reciters")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(TAG, task.getResult().toObjects(Reciter.class).toString());
-                    } else {
-                        Log.e(TAG, "Error reading reciters", task.getException());
-                    }
-                });
-        return null;
+    @NonNull
+    public Single<List<ReciterModel>> getRecitersForRecitation(@NonNull String recitationKey) {
+        return Single.create((SingleOnSubscribe<List<ReciterModel>>) emitter -> {
+            db.collection("recitations")
+                    .document(recitationKey)
+                    .collection("reciters")
+                    .get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            final List<ReciterModel> reciterModels = task.getResult().toObjects(ReciterModel.class);
+                            emitter.onSuccess(reciterModels);
+                        } else {
+                            emitter.onError(task.getException());
+                        }
+                    });
+        });
     }
 
 }

@@ -13,7 +13,7 @@ import app.quranhub.R;
 import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
 import app.quranhub.ui.downloads_manager.utils.QuranAudioDeleteUtils;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
+import app.quranhub.data.local.db.UserDatabase;
 
 public class DownloadsRecitationsFragment extends BaseDownloadsFragment
         implements DeleteConfirmationDialogFragment.DeleteConfirmationCallbacks {
@@ -46,7 +46,7 @@ public class DownloadsRecitationsFragment extends BaseDownloadsFragment
             DisplayableDownload displayableDownload = downloads.get(i);
 
             int numOfDownloadedReciters = UserDatabase.getInstance(requireContext())
-                    .getSheikhRecitationDao()
+                    .getReciterRecitationDao()
                     .getNumOfRecitersWithDownloads(i);
 
             displayableDownload.setDownloadedAmount(

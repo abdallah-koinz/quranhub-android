@@ -16,7 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.TranslationBook;
+import app.quranhub.data.local.entity.TranslationBook;
 import app.quranhub.ui.mushaf.fragments.TranslationsDataFragment;
 import app.quranhub.util.DialogUtils;
 

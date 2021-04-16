@@ -34,7 +34,7 @@ import java.util.Objects;
 
 import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.util.DialogUtils;
 import app.quranhub.util.RecorderMediaHelper;
 import butterknife.BindView;

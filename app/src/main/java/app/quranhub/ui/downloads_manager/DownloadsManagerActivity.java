@@ -10,10 +10,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import app.quranhub.R;
+import app.quranhub.data.model.ReciterModel;
 import app.quranhub.ui.base.BaseActivity;
 import app.quranhub.ui.downloads_manager.dialogs.AudioDownloadAmountDialogFragment;
 import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
-import app.quranhub.ui.mushaf.data.entity.Sheikh;
 
 public class DownloadsManagerActivity extends BaseActivity implements
         BaseDownloadsFragment.DownloadsManagerNavigationCallbacks,
@@ -145,7 +145,7 @@ public class DownloadsManagerActivity extends BaseActivity implements
     }
 
     @Override
-    public void onReciterSelected(int recitationId, @NonNull Sheikh reciter) {
+    public void onReciterSelected(int recitationId, @NonNull ReciterModel reciter) {
         Log.d(TAG, "onReciterSelected - recitationId=" + recitationId +
                 " , reciter=" + reciter);
 

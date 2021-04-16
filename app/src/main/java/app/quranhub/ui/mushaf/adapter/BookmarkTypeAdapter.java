@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
+import app.quranhub.data.local.entity.BookmarkType;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;

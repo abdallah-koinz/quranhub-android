@@ -26,8 +26,8 @@ import androidx.fragment.app.DialogFragment;
 import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.ui.downloads_manager.network.QuranAudioDownloaderService;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.SheikhRecitation;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.ReciterRecitation;
 import app.quranhub.ui.mushaf.utils.NetworkUtil;
 import app.quranhub.util.DialogUtils;
 import butterknife.BindView;
@@ -229,10 +229,10 @@ public class AudioDownloadAmountDialogFragment extends DialogFragment {
             protected Void doInBackground(Void... voids) {
                 // Store SheikhRecitation for the download recitation & reciter in DB
                 UserDatabase userDatabase = UserDatabase.getInstance(requireContext());
-                if (userDatabase.getSheikhRecitationDao()
+                if (userDatabase.getReciterRecitationDao()
                         .get(recitationId, reciterId) == null) {
-                    userDatabase.getSheikhRecitationDao()
-                            .insert(new SheikhRecitation(recitationId, reciterId));
+                    userDatabase.getReciterRecitationDao()
+                            .insert(new ReciterRecitation(recitationId, reciterId));
                 }
 
                 return null;

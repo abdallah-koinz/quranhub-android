@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.entity.Translation;
+import app.quranhub.data.local.entity.Translation;
 import app.quranhub.ui.mushaf.model.TafseerModel;
 
 public interface TafseerInteractor {

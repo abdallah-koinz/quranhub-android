@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.entity.HizbQuarter;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.entity.HizbQuarter;
 import app.quranhub.ui.mushaf.model.SearchModel;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;

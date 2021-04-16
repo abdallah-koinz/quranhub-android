@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.entity.QuranSubject;
-import app.quranhub.ui.mushaf.data.entity.QuranSubjectCategory;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.entity.QuranSubject;
+import app.quranhub.data.local.entity.QuranSubjectCategory;
 import app.quranhub.ui.mushaf.model.TopicCategory;
 import app.quranhub.ui.mushaf.model.TopicModel;
 import io.reactivex.Single;

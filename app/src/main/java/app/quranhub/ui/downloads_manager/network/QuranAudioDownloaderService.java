@@ -24,11 +24,11 @@ import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.ui.downloads_manager.utils.QuranAudioDownloadUtils;
 import app.quranhub.ui.downloads_manager.utils.QuranAudioFileUtils;
-import app.quranhub.ui.mushaf.data.dao.AyaDao;
-import app.quranhub.ui.mushaf.data.db.MushafDatabase;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.QuranAudio;
+import app.quranhub.data.local.dao.AyaDao;
+import app.quranhub.data.local.db.MushafDatabase;
+import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.QuranAudio;
 import app.quranhub.ui.mushaf.network.downloader_service.DownloadRequestInfo;
 import app.quranhub.ui.mushaf.network.downloader_service.PRDownloaderService;
 import app.quranhub.util.LocaleUtils;
@@ -209,7 +209,7 @@ public class QuranAudioDownloaderService extends PRDownloaderService {
                 Aya aya = mushafDatabase.getAyaDao().findAyaById(ayaId);
                 String filePath = QuranAudioFileUtils.getLocalRelativeDirPath(recitationId, reciterId)
                         + downloadRequestInfo.getFileName();
-                int sheikhRecitationId = userDatabase.getSheikhRecitationDao()
+                int sheikhRecitationId = userDatabase.getReciterRecitationDao()
                         .getSheikhRecitationId(recitationId, reciterId);
                 QuranAudio quranAudio = new QuranAudio(aya.getPage(), aya.getSura(), aya.getSuraAya(),
                         ayaId, filePath, sheikhRecitationId);

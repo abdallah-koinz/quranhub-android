@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.data.entity.Book;
+import app.quranhub.data.local.entity.Book;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import app.quranhub.ui.mushaf.network.model.BookContent;
 import app.quranhub.util.LocaleUtils;

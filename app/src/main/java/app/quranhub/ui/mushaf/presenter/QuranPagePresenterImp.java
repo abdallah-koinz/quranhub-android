@@ -9,10 +9,10 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import app.quranhub.ui.base.BasePresenterImp;
-import app.quranhub.ui.mushaf.data.entity.Aya;
-import app.quranhub.ui.mushaf.data.entity.AyaBookmark;
-import app.quranhub.ui.mushaf.data.entity.BookmarkType;
-import app.quranhub.ui.mushaf.data.entity.Note;
+import app.quranhub.data.local.entity.Aya;
+import app.quranhub.data.local.entity.AyaBookmark;
+import app.quranhub.data.local.entity.BookmarkType;
+import app.quranhub.data.local.entity.Note;
 import app.quranhub.ui.mushaf.events.QuranPageClickEvent;
 import app.quranhub.ui.mushaf.interactor.QuranPageInteractor;
 import app.quranhub.ui.mushaf.interactor.QuranPageInteractorImp;

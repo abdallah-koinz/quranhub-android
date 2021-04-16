@@ -29,7 +29,7 @@ import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.ui.base.BaseService;
 import app.quranhub.ui.main.MainActivity;
-import app.quranhub.ui.mushaf.data.db.UserDatabase;
+import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.ui.mushaf.model.AyaIdInfo;
 import app.quranhub.ui.mushaf.model.RepeatModel;
 import app.quranhub.ui.mushaf.model.SuraVersesNumber;
