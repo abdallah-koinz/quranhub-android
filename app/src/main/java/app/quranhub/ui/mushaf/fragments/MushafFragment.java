@@ -65,7 +65,7 @@ import app.quranhub.ui.mushaf.view.MushafView;
 import app.quranhub.util.LocaleUtils;
 import app.quranhub.util.ScreenUtils;
 import app.quranhub.util.SharedPrefsUtils;
-import app.quranhub.util.UserPreferencesUtils;
+import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -250,7 +250,7 @@ public class MushafFragment extends Fragment implements MushafView, MushafBottom
 
         observeOnQuranSeekbarChange();
 
-        if (UserPreferencesUtils.getScreenReadingBacklightSetting(requireContext())) {
+        if (AppPreferencesUtils.getScreenReadingBacklightSetting(requireContext())) {
             // disable the screen timeout
             ScreenUtils.keepScreenOn(requireActivity(), true);
         }
@@ -421,7 +421,7 @@ public class MushafFragment extends Fragment implements MushafView, MushafBottom
 
         butterknifeUnbinder.unbind();
 
-        if (UserPreferencesUtils.getScreenReadingBacklightSetting(requireContext())) {
+        if (AppPreferencesUtils.getScreenReadingBacklightSetting(requireContext())) {
             // re-enable the screen timeout
             ScreenUtils.keepScreenOn(requireActivity(), false);
         }
@@ -513,9 +513,9 @@ public class MushafFragment extends Fragment implements MushafView, MushafBottom
     }
 
     private void initFragments() {
-        currentTafsserId = UserPreferencesUtils.getQuranTranslationBook(requireActivity());
-        currentTafseerLang = UserPreferencesUtils.getQuranTranslationLanguage(requireActivity());
-        recitationId = UserPreferencesUtils.getRecitationSetting(requireContext());
+        currentTafsserId = AppPreferencesUtils.getQuranTranslationBook(requireActivity());
+        currentTafseerLang = AppPreferencesUtils.getQuranTranslationLanguage(requireActivity());
+        recitationId = AppPreferencesUtils.getRecitationSetting(requireContext());
         ayaAudioPopup = new AyaAudioPopup(requireActivity(), this);
         bookName = getString(R.string.translation_muyassar);
         translationTv.setMovementMethod(new ScrollingMovementMethod());
@@ -695,7 +695,7 @@ public class MushafFragment extends Fragment implements MushafView, MushafBottom
     // show list of available books for translation language
     @OnClick(R.id.tv_book_name)
     void onBookNameClicked() {
-        String transLang = UserPreferencesUtils.getQuranTranslationLanguage(requireContext());
+        String transLang = AppPreferencesUtils.getQuranTranslationLanguage(requireContext());
         TranslationsDialogFragment translationsDialog = TranslationsDialogFragment.newInstance(
                 transLang, this);
         translationsDialog.show(getParentFragmentManager(), "trans_dialog");

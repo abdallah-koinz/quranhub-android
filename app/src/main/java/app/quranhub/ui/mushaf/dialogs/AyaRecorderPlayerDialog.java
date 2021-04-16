@@ -24,7 +24,7 @@ import java.util.Objects;
 import app.quranhub.data.Constants;
 import app.quranhub.R;
 import app.quranhub.util.RecorderMediaHelper;
-import app.quranhub.util.UserPreferencesUtils;
+import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -116,7 +116,7 @@ public class AyaRecorderPlayerDialog extends DialogFragment implements RecorderM
     }
 
     private void setRecordingFile() {
-        int recitation = UserPreferencesUtils.getRecitationSetting(getActivity());
+        int recitation = AppPreferencesUtils.getRecitationSetting(getActivity());
         File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_MUSIC), Constants.Directory.AYA_VOICE_RECORDER
                 + File.separator + recitation + File.separator
                 + ayaId + ".3gp");

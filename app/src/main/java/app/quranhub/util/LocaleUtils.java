@@ -43,7 +43,7 @@ public final class LocaleUtils {
 
     @NonNull
     public static Context initAppLanguage(@NonNull Context context) {
-        return setAppLanguage(context, UserPreferencesUtils.getAppLangSetting(context));
+        return setAppLanguage(context, AppPreferencesUtils.getAppLangSetting(context));
     }
 
     public static String formatNumber(@NonNull String num) {

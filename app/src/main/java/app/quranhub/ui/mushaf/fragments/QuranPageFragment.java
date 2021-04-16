@@ -54,7 +54,7 @@ import app.quranhub.util.FragmentUtils;
 import app.quranhub.util.GlideApp;
 import app.quranhub.util.IntentUtils;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.util.UserPreferencesUtils;
+import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -169,7 +169,7 @@ public class QuranPageFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setParentFragment();
-        recitationId = UserPreferencesUtils.getRecitationSetting(requireContext());
+        recitationId = AppPreferencesUtils.getRecitationSetting(requireContext());
         getCurrentPageAyas();
         containerScrollView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -813,7 +813,7 @@ public class QuranPageFragment extends Fragment
         mushafFragment.togglePauseState(false);
         ayaAudioDownloaded = false;
 
-        String reciterId = UserPreferencesUtils.getReciterSheikhSetting(requireContext());
+        String reciterId = AppPreferencesUtils.getReciterSheikhSetting(requireContext());
         if (reciterId != null) {
             openDownloadAmountDialog(reciterId);
         } else {

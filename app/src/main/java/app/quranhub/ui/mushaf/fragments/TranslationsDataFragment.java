@@ -32,7 +32,7 @@ import app.quranhub.ui.mushaf.network.TranslationDownloader;
 import app.quranhub.ui.mushaf.network.api.TranslationsApi;
 import app.quranhub.ui.mushaf.network.model.TranslationsResponse;
 import app.quranhub.util.FragmentUtils;
-import app.quranhub.util.UserPreferencesUtils;
+import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.ui.common.interfaces.Searchable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -134,7 +134,7 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
                 layoutManager.getOrientation());
         translationsRecyclerView.addItemDecoration(dividerItemDecoration);
         displayableTranslations = new ArrayList<>();
-        adapter = new TranslationsAdapter(displayableTranslations, UserPreferencesUtils.getQuranTranslationBook(getContext()), this);
+        adapter = new TranslationsAdapter(displayableTranslations, AppPreferencesUtils.getQuranTranslationBook(getContext()), this);
         translationsRecyclerView.setAdapter(adapter);
     }
 
@@ -278,9 +278,9 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
     public void onTranslationClick(TranslationBook translationBook, int clickedItemIndex) {
         Log.d(TAG, "Clicked translation book: " + translationBook);
 
-        UserPreferencesUtils.persistQuranTranslationBook(getContext(), translationBook.getId());
-        UserPreferencesUtils.persistBookDbName(getActivity(), translationBook.getDatabaseName());
-        UserPreferencesUtils.persistBookName(getActivity(), translationBook.getName());
+        AppPreferencesUtils.persistQuranTranslationBook(getContext(), translationBook.getId());
+        AppPreferencesUtils.persistBookDbName(getActivity(), translationBook.getDatabaseName());
+        AppPreferencesUtils.persistBookName(getActivity(), translationBook.getName());
         listener.onTranslationSelected(translationBook);
     }
 

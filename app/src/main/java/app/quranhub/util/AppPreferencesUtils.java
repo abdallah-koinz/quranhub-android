@@ -8,10 +8,10 @@ import androidx.annotation.Nullable;
 import app.quranhub.data.Constants;
 
 
-public final class UserPreferencesUtils {
+public final class AppPreferencesUtils {
 
 
-    private UserPreferencesUtils() { /* prevent instantiation */}
+    private AppPreferencesUtils() { /* prevent instantiation */}
 
     private static final String PREF_NIGHT_MODE_SETTING = "PREF_NIGHT_MODE_SETTING";
     private static final String PREF_APP_LANG_SETTING = "PREF_APP_LANG_SETTING";

@@ -39,7 +39,7 @@ import app.quranhub.ui.mushaf.network.ApiClient;
 import app.quranhub.ui.settings.dialogs.OptionsListAdapter;
 import app.quranhub.util.DialogUtils;
 import app.quranhub.util.FragmentUtils;
-import app.quranhub.util.UserPreferencesUtils;
+import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -306,9 +306,9 @@ public class QuranRecitersDialogFragment extends DialogFragment
                     }
 
                     // persist selected reciter as preference if recitation id matches the one in preferences
-                    int recitationIdPreference = UserPreferencesUtils.getRecitationSetting(requireContext());
+                    int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(requireContext());
                     if (recitationIdPreference == recitationId) {
-                        UserPreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciter.getId());
+                        AppPreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciter.getId());
                     }
                 }
                 return null;

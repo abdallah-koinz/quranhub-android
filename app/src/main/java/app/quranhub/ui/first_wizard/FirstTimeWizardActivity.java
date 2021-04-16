@@ -26,7 +26,7 @@ import app.quranhub.ui.main.MainActivity;
 import app.quranhub.ui.mushaf.data.db.MushafDatabase;
 import app.quranhub.ui.mushaf.data.db.RoomAsset;
 import app.quranhub.util.LocaleUtils;
-import app.quranhub.util.UserPreferencesUtils;
+import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.ui.common.interfaces.Searchable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -228,7 +228,7 @@ public class FirstTimeWizardActivity extends BaseActivity implements OptionsList
      */
     private void finishWizard() {
         nextButton.setEnabled(false);
-        UserPreferencesUtils.markFirstTimeWizardDone(this);
+        AppPreferencesUtils.markFirstTimeWizardDone(this);
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
@@ -324,19 +324,19 @@ public class FirstTimeWizardActivity extends BaseActivity implements OptionsList
         switch (requestCode) {
             case RC_APP_LANGUAGES_STEP:
                 String selectedLangCode = Constants.Language.CODES.get(position);
-                if (!selectedLangCode.equals(UserPreferencesUtils.getAppLangSetting(this))) {
-                    UserPreferencesUtils.persistAppLangSetting(this, selectedLangCode);
+                if (!selectedLangCode.equals(AppPreferencesUtils.getAppLangSetting(this))) {
+                    AppPreferencesUtils.persistAppLangSetting(this, selectedLangCode);
                     LocaleUtils.setAppLanguage(this, selectedLangCode);
                     restart();
                 }
                 break;
             case RC_TRANSLATION_LANGUAGES_STEP:
                 String selectedTransLangCode = Constants.Language.CODES.get(position);
-                UserPreferencesUtils.persistQuranTranslationLanguage(this, selectedTransLangCode);
+                AppPreferencesUtils.persistQuranTranslationLanguage(this, selectedTransLangCode);
                 break;
             case RC_RECITATIONS_STEP:
                 int selectedRecitationId = position;
-                UserPreferencesUtils.persistRecitationSetting(this, selectedRecitationId);
+                AppPreferencesUtils.persistRecitationSetting(this, selectedRecitationId);
                 break;
         }
     }
@@ -356,7 +356,7 @@ public class FirstTimeWizardActivity extends BaseActivity implements OptionsList
             if (position == appLanguagesStepPosition) {
                 int selectedAppLanguageIndex =
                         Constants.Language.CODES.indexOf(
-                                UserPreferencesUtils.getAppLangSetting(FirstTimeWizardActivity.this));
+                                AppPreferencesUtils.getAppLangSetting(FirstTimeWizardActivity.this));
                 return OptionsListFragment.newInstance(
                         FirstTimeWizardActivity.this,
                         Constants.Language.NAMES_STR_IDS,
@@ -366,7 +366,7 @@ public class FirstTimeWizardActivity extends BaseActivity implements OptionsList
             } else if (position == translationLanguagesStepPosition) {
                 int selectedTranslationLanguageIndex =
                         Constants.Language.CODES.indexOf(
-                                UserPreferencesUtils.getQuranTranslationLanguage(FirstTimeWizardActivity.this));
+                                AppPreferencesUtils.getQuranTranslationLanguage(FirstTimeWizardActivity.this));
                 return OptionsListFragment.newInstance(
                         FirstTimeWizardActivity.this,
                         Constants.Language.NAMES_STR_IDS,
@@ -375,7 +375,7 @@ public class FirstTimeWizardActivity extends BaseActivity implements OptionsList
                         RC_TRANSLATION_LANGUAGES_STEP);
             } else if (position == recitationsStepPosition) {
                 int selectedRecitationIndex =
-                        UserPreferencesUtils.getRecitationSetting(FirstTimeWizardActivity.this);
+                        AppPreferencesUtils.getRecitationSetting(FirstTimeWizardActivity.this);
                 return OptionsListFragment.newInstance(
                         FirstTimeWizardActivity.this,
                         Constants.Recitation.NAMES_STR_IDS,
