@@ -22,7 +22,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/top_bar_fragment"
-            android:name="app.quranhub.mushaf.fragments.MushafTopBarFragment"
+            android:name="app.quranhub.ui.mushaf.fragments.MushafTopBarFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/footerbar_fragment"
-            android:name="app.quranhub.mushaf.fragments.MushafBottomBarFragment"
+            android:name="app.quranhub.ui.mushaf.fragments.MushafBottomBarFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -8,7 +8,7 @@ import androidx.multidex.MultiDexApplication;
 
 import com.downloader.PRDownloader;
 
-import app.quranhub.utils.LocaleUtils;
+import app.quranhub.util.LocaleUtils;
 
 public class QuranhubApplication extends MultiDexApplication {
 

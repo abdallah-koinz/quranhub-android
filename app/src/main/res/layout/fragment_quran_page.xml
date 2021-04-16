@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:scrollbarAlwaysDrawVerticalTrack="true"
-            tools:context="app.quranhub.mushaf.fragments.QuranPageFragment">
+            tools:context=".ui.mushaf.fragments.QuranPageFragment">
 
             <ImageView
                 android:id="@+id/page_iv"
