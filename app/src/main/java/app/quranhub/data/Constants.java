@@ -12,7 +12,7 @@ public final class Constants {
         // Prevent instantiation
     }
 
-    public static final String API_BASE_URL = "https://example.com";
+    public static final String API_BASE_URL = "https://api.quranhub.app";
     public static final String STATIC_FILES_BASE_URL = "https://s.quranhub.app";
 
     public static final class Quran {
