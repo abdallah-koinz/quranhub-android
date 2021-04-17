@@ -1,6 +1,5 @@
 package app.quranhub.ui.mushaf.fragments;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
@@ -43,9 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
 public class SearchFragment extends Fragment implements ItemSelectionListener<SearchModel>, OptionDialog.ItemClickListener, OptionsListDialogFragment.ItemSelectionListener {
-
 
     @BindView(R.id.search_rv)
     RecyclerView searchRv;
