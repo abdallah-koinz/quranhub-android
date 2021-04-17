@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import app.quranhub.R;
-import app.quranhub.ui.main.MainActivity;
 import app.quranhub.data.local.entity.TranslationBook;
+import app.quranhub.ui.main.MainActivity;
 import app.quranhub.util.AppPreferencesUtils;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

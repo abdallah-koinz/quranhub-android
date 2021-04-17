@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.Objects;
 
 import app.quranhub.R;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.mushaf.adapter.SearchAdapter;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
@@ -29,7 +30,6 @@ import app.quranhub.ui.mushaf.model.SearchModel;
 import app.quranhub.ui.mushaf.model.TopicCategory;
 import app.quranhub.ui.mushaf.viewmodel.TopicViewModel;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

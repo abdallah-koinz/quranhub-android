@@ -18,8 +18,8 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 
 import java.io.File;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

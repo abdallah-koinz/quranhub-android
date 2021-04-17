@@ -4,23 +4,20 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
-import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
-import app.quranhub.util.QuranAudioDeleteUtils;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.data.local.entity.ReciterRecitation;
-import app.quranhub.data.remote.ApiClient;
+import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
+import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
+import app.quranhub.util.QuranAudioDeleteUtils;
 
 public class DownloadsRecitersFragment extends BaseDownloadsFragment
         implements DeleteConfirmationDialogFragment.DeleteConfirmationCallbacks {

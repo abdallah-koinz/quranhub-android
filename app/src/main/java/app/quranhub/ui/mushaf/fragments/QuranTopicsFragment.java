@@ -21,13 +21,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.quranhub.R;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.main.MainActivity;
 import app.quranhub.ui.mushaf.adapter.SubjectsAdapter;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import app.quranhub.ui.mushaf.model.TopicCategory;
 import app.quranhub.ui.mushaf.model.TopicModel;
 import app.quranhub.ui.mushaf.viewmodel.SubjectsViewModel;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.Constants;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import app.quranhub.ui.mushaf.model.DisplayableBookmark;
 import app.quranhub.util.LocaleUtils;

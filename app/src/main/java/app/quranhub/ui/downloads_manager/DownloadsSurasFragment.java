@@ -13,13 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
-import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
-import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
-import app.quranhub.data.service.QuranAudioDownloaderService;
-import app.quranhub.util.QuranAudioDeleteUtils;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.ReciterRecitation;
+import app.quranhub.data.service.QuranAudioDownloaderService;
+import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
+import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
 import app.quranhub.util.AppPreferencesUtils;
+import app.quranhub.util.QuranAudioDeleteUtils;
 
 public class DownloadsSurasFragment extends BaseDownloadsFragment
         implements DeleteConfirmationDialogFragment.DeleteConfirmationCallbacks {

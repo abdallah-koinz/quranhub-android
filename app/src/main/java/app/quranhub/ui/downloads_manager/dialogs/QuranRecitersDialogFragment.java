@@ -29,11 +29,11 @@ import java.util.List;
 
 import app.quranhub.R;
 import app.quranhub.data.Constants;
-import app.quranhub.data.model.ReciterModel;
-import app.quranhub.data.repository.RecitationsRepository;
 import app.quranhub.data.local.dao.ReciterDao;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.Reciter;
+import app.quranhub.data.model.ReciterModel;
+import app.quranhub.data.repository.RecitationsRepository;
 import app.quranhub.ui.common.dialogs.OptionsListAdapter;
 import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.DialogUtils;

@@ -19,13 +19,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import app.quranhub.R;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.mushaf.listener.BookmarksListListener;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.ui.mushaf.presenter.BookmarksPresenter;
 import app.quranhub.ui.mushaf.presenter.BookmarksPresenterImp;
 import app.quranhub.ui.mushaf.view.BookmarksView;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

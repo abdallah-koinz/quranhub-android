@@ -23,13 +23,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.data.service.QuranAudioDownloaderService;
+import app.quranhub.data.Constants;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.ReciterRecitation;
-import app.quranhub.util.NetworkUtil;
+import app.quranhub.data.service.QuranAudioDownloaderService;
 import app.quranhub.util.DialogUtils;
+import app.quranhub.util.NetworkUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

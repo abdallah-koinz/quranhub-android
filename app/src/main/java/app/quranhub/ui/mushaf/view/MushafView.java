@@ -2,9 +2,9 @@ package app.quranhub.ui.mushaf.view;
 
 import java.util.ArrayList;
 
-import app.quranhub.ui.base.BaseView;
 import app.quranhub.data.local.entity.Aya;
 import app.quranhub.data.local.entity.TranslationBook;
+import app.quranhub.ui.base.BaseView;
 import app.quranhub.ui.mushaf.model.QuranPageInfo;
 import app.quranhub.ui.mushaf.model.SuraVersesNumber;
 

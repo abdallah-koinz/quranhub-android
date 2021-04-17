@@ -21,10 +21,10 @@ import androidx.fragment.app.DialogFragment;
 import java.io.File;
 import java.util.Objects;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.util.RecorderMediaHelper;
+import app.quranhub.data.Constants;
 import app.quranhub.util.AppPreferencesUtils;
+import app.quranhub.util.RecorderMediaHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

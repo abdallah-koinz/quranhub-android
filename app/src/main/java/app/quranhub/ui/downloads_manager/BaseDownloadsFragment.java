@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.quranhub.R;
+import app.quranhub.data.service.QuranAudioDownloaderService;
 import app.quranhub.ui.downloads_manager.adapters.DownloadsAdapter;
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
-import app.quranhub.data.service.QuranAudioDownloaderService;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

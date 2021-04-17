@@ -23,8 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import app.quranhub.R;
-import app.quranhub.ui.mushaf.adapter.NotesAdapter;
 import app.quranhub.data.local.entity.Note;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
+import app.quranhub.ui.mushaf.adapter.NotesAdapter;
 import app.quranhub.ui.mushaf.dialogs.AddNoteDialog;
 import app.quranhub.ui.mushaf.dialogs.NotesFilterDialog;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
@@ -32,7 +33,6 @@ import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.ui.mushaf.model.DisplayedNote;
 import app.quranhub.ui.mushaf.viewmodel.NotesViewModel;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

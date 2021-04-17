@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.ui.base.BasePresenterImp;
+import app.quranhub.data.Constants;
 import app.quranhub.data.local.entity.Aya;
 import app.quranhub.data.local.entity.TranslationBook;
+import app.quranhub.ui.base.BasePresenterImp;
 import app.quranhub.ui.mushaf.interactor.Mus7fInteractor;
 import app.quranhub.ui.mushaf.interactor.Mus7fInteractorImp;
 import app.quranhub.ui.mushaf.model.QuranPageInfo;

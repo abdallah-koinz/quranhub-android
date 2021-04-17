@@ -8,12 +8,12 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.Constants;
+import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
 import app.quranhub.util.QuranAudioDeleteUtils;
-import app.quranhub.data.local.db.UserDatabase;
 
 public class DownloadsRecitationsFragment extends BaseDownloadsFragment
         implements DeleteConfirmationDialogFragment.DeleteConfirmationCallbacks {

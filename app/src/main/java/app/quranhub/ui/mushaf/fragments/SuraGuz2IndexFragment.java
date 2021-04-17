@@ -25,15 +25,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.quranhub.R;
+import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.mushaf.adapter.Guz2IndexAdapter;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.ui.mushaf.model.SuraIndexModelMapper;
 import app.quranhub.ui.mushaf.presenter.SuraGuz2IndexPresenter;
 import app.quranhub.ui.mushaf.presenter.SuraGuz2IndexPresenterImp;
 import app.quranhub.ui.mushaf.view.SuraGuz2IndexView;
-import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

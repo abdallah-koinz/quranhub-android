@@ -22,8 +22,6 @@ import java.util.List;
 
 import app.quranhub.R;
 import app.quranhub.data.Constants;
-import app.quranhub.util.QuranAudioDownloadUtils;
-import app.quranhub.util.QuranAudioFileUtils;
 import app.quranhub.data.local.dao.AyaDao;
 import app.quranhub.data.local.db.MushafDatabase;
 import app.quranhub.data.local.db.UserDatabase;
@@ -32,6 +30,8 @@ import app.quranhub.data.local.entity.QuranAudio;
 import app.quranhub.prdownloader_service.DownloadRequestInfo;
 import app.quranhub.prdownloader_service.PRDownloaderService;
 import app.quranhub.util.LocaleUtils;
+import app.quranhub.util.QuranAudioDownloadUtils;
+import app.quranhub.util.QuranAudioFileUtils;
 
 /**
  * {@code PRDownloaderService} for Quran audio files.

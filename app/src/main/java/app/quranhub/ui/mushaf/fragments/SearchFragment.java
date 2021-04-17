@@ -30,15 +30,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.quranhub.R;
+import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
+import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.mushaf.adapter.SearchAdapter;
 import app.quranhub.ui.mushaf.dialogs.OptionDialog;
 import app.quranhub.ui.mushaf.listener.ItemSelectionListener;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.ui.mushaf.model.SearchModel;
 import app.quranhub.ui.mushaf.viewmodel.SearchViewModel;
-import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

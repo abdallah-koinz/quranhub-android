@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import app.quranhub.ui.mushaf.adapter.BookAdapter;
 import app.quranhub.data.remote.model.BookContent;
+import app.quranhub.ui.mushaf.adapter.BookAdapter;
 
 @Entity
 public class Book {

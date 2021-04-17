@@ -21,8 +21,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.Constants;
 import app.quranhub.data.remote.model.BookContent;
 
 public class BookDownloadManager {
