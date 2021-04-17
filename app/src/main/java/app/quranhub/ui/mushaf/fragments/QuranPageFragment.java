@@ -33,28 +33,28 @@ import com.bumptech.glide.request.target.Target;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
-import app.quranhub.data.model.ReciterModel;
-import app.quranhub.ui.downloads_manager.dialogs.AudioDownloadAmountDialogFragment;
-import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
+import app.quranhub.data.Constants;
 import app.quranhub.data.local.entity.Aya;
 import app.quranhub.data.local.entity.AyaBookmark;
 import app.quranhub.data.local.entity.BookmarkType;
 import app.quranhub.data.local.entity.Note;
+import app.quranhub.data.model.ReciterModel;
+import app.quranhub.ui.downloads_manager.dialogs.AudioDownloadAmountDialogFragment;
+import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
 import app.quranhub.ui.mushaf.dialogs.AddBookmarkDialog;
 import app.quranhub.ui.mushaf.dialogs.AddNoteDialog;
 import app.quranhub.ui.mushaf.dialogs.AyaActionsDialog;
 import app.quranhub.ui.mushaf.model.BookmarkModel;
 import app.quranhub.ui.mushaf.presenter.QuranPagePresenter;
 import app.quranhub.ui.mushaf.presenter.QuranPagePresenterImp;
-import app.quranhub.util.ImageUtil;
 import app.quranhub.ui.mushaf.view.QuranPageView;
+import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.FragmentUtils;
 import app.quranhub.util.GlideApp;
+import app.quranhub.util.ImageUtil;
 import app.quranhub.util.IntentUtils;
 import app.quranhub.util.ScreenUtils;
-import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -115,7 +115,6 @@ public class QuranPageFragment extends Fragment
     private Note selectedAyaNote;
     private boolean isVisibleToUser;
     private boolean drawShadowFromNotification = false;
-
 
     /**
      * Use this factory method to create a new instance of
@@ -351,7 +350,7 @@ public class QuranPageFragment extends Fragment
         /* the dialog coordinates itself to the window origin,
            instead we want it to coordinate to the quran image origin */
 
-        int yLocation = ScreenUtils.getStatusBarHeight(getActivity(), quranPageIv); // base yLocation
+        int yLocation = ScreenUtils.getStatusBarHeight(requireContext(), quranPageIv); // base yLocation
         int y;
         switch (recitationId) {
             case Constants.Recitation.HAFS_ID:

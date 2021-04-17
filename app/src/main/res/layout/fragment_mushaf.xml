@@ -39,7 +39,7 @@
             android:layout_marginBottom="@dimen/_8sdp"
             android:layoutDirection="rtl"
             android:max="604"
-            android:progressTint="@color/primary"
+            android:progressTint="@color/color_accent"
             android:thumb="@drawable/quran_seekbar_thumb"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

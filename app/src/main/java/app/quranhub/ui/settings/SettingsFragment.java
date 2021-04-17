@@ -6,21 +6,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import app.quranhub.BuildConfig;
 import app.quranhub.R;
 import app.quranhub.data.Constants;
-import app.quranhub.data.model.ReciterModel;
-import app.quranhub.ui.base.BaseActivity;
-import app.quranhub.ui.downloads_manager.DownloadsManagerActivity;
-import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.Reciter;
+import app.quranhub.data.model.ReciterModel;
+import app.quranhub.ui.base.BaseActivity;
+import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
+import app.quranhub.ui.downloads_manager.DownloadsManagerActivity;
+import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
 import app.quranhub.ui.settings.custom.MushafSetting;
 import app.quranhub.ui.settings.custom.MushafSettingSwitch;
-import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.LocaleUtils;
 import butterknife.BindView;
@@ -51,10 +53,6 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
     MushafSettingSwitch screenReadingBacklightSettingSwitch;
     @BindView(R.id.setting_last_read_page)
     MushafSettingSwitch lastReadPageSettingSwitch;
-    @BindView(R.id.setting_reading_warnings)
-    MushafSettingSwitch readingWarningsSettingSwitch;
-    @BindView(R.id.setting_reading_alarm)
-    MushafSetting readingAlarmSetting;
     @BindView(R.id.setting_recitation)
     MushafSetting recitationSetting;
     @BindView(R.id.setting_quran_reader)
@@ -174,14 +172,6 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
             AppPreferencesUtils.persistLastReadPageSetting(requireContext(), checked);
         });
 
-        readingWarningsSettingSwitch.setOnCheckedChangeListener((settingSwitch, checked) -> {
-            // TODO readingWarningsSettingSwitch change listener
-        });
-
-        readingAlarmSetting.setOnClickListener(v -> {
-            // TODO readingAlarmSetting click listener
-        });
-
         recitationSetting.setOnClickListener(v -> {
             // TODO apply MVP or MVVM
             int selectedRecitationSettingIndex = AppPreferencesUtils.getRecitationSetting(requireContext());
@@ -212,6 +202,8 @@ public class SettingsFragment extends Fragment implements OptionsListDialogFragm
 
         aboutAppVersionSetting.setOnClickListener(v -> {
             // TODO aboutAppVersionSetting click listener
+            Toast.makeText(requireContext(), "v" + BuildConfig.VERSION_NAME,
+                    Toast.LENGTH_SHORT).show();
         });
 
         shareAppSetting.setOnClickListener(v -> {

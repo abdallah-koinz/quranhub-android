@@ -62,20 +62,6 @@
                 app:switchChecked="false"
                 app:switchSettingName="@string/setting_last_read_page" />
 
-            <app.quranhub.ui.settings.custom.MushafSettingSwitch
-                android:id="@+id/setting_reading_warnings"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:switchChecked="false"
-                app:switchSettingName="@string/setting_reading_warnings" />
-
-            <app.quranhub.ui.settings.custom.MushafSetting
-                android:id="@+id/setting_reading_alarm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:currentValue="09:00 AM"
-                app:settingName="@string/setting_reading_alarm" />
-
             <app.quranhub.ui.settings.custom.MushafSetting
                 android:id="@+id/setting_recitation"
                 android:layout_width="match_parent"
@@ -105,6 +91,7 @@
                 android:id="@+id/setting_audio_download_manager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:settingName="@string/setting_audio_download_manager" />
 
         </app.quranhub.ui.settings.custom.MushafSettingsCategory>

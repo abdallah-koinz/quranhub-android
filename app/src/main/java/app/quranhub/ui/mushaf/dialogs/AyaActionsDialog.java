@@ -17,8 +17,8 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Objects;
 
-import app.quranhub.data.Constants;
 import app.quranhub.R;
+import app.quranhub.data.Constants;
 import app.quranhub.ui.mushaf.model.BookmarkModel;
 import butterknife.BindView;
 import butterknife.ButterKnife;
