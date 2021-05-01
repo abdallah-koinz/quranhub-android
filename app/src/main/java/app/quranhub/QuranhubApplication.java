@@ -15,7 +15,6 @@ public class QuranhubApplication extends MultiDexApplication {
     private static final String TAG = QuranhubApplication.class.getSimpleName();
 
     // Called when the application is starting, before any other application objects have been created.
-    // Overriding this method is totally optional!
     @Override
     public void onCreate() {
         super.onCreate();
@@ -27,7 +26,6 @@ public class QuranhubApplication extends MultiDexApplication {
     }
 
     // Called by the system when the device configuration changes while your component is running.
-    // Overriding this method is totally optional!
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);

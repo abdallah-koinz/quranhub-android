@@ -1,5 +1,6 @@
 package app.quranhub.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -21,6 +22,7 @@ public final class LocaleUtils {
         return Locale.getDefault().getLanguage();
     }
 
+    @SuppressLint("ObsoleteSdkInt")
     @NonNull
     public static Context setAppLanguage(@NonNull Context context, @NonNull String langCode) {
         Log.d(TAG, "Setting app language: " + langCode);
