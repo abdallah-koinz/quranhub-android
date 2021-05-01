@@ -3,6 +3,7 @@ package app.quranhub.data.local.entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -16,16 +17,6 @@ public class BookmarkType implements Parcelable {
     private String bookmarkTypeName;
     @Nullable
     private int colorIndex;
-
-
-    public int getColorIndex() {
-        return colorIndex;
-    }
-
-    public void setColorIndex(int colorIndex) {
-        this.colorIndex = colorIndex;
-    }
-
 
     public BookmarkType(int typeId, String bookmarkTypeName) {
         this.typeId = typeId;
@@ -56,14 +47,6 @@ public class BookmarkType implements Parcelable {
         }
     };
 
-    public String getBookmarkTypeName() {
-        return bookmarkTypeName;
-    }
-
-    public void setBookmarkTypeName(String bookmarkTypeName) {
-        this.bookmarkTypeName = bookmarkTypeName;
-    }
-
     public int getTypeId() {
         return typeId;
     }
@@ -72,12 +55,20 @@ public class BookmarkType implements Parcelable {
         this.typeId = typeId;
     }
 
-    @Override
-    public String toString() {
-        return "BookmarkType{" +
-                "typeId=" + typeId +
-                ", bookmarkTypeName='" + bookmarkTypeName + '\'' +
-                '}';
+    public String getBookmarkTypeName() {
+        return bookmarkTypeName;
+    }
+
+    public void setBookmarkTypeName(String bookmarkTypeName) {
+        this.bookmarkTypeName = bookmarkTypeName;
+    }
+
+    public int getColorIndex() {
+        return colorIndex;
+    }
+
+    public void setColorIndex(int colorIndex) {
+        this.colorIndex = colorIndex;
     }
 
     @Override
@@ -89,5 +80,15 @@ public class BookmarkType implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(typeId);
         dest.writeString(bookmarkTypeName);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "BookmarkType{" +
+                "typeId=" + typeId +
+                ", bookmarkTypeName='" + bookmarkTypeName + '\'' +
+                ", colorIndex=" + colorIndex +
+                '}';
     }
 }

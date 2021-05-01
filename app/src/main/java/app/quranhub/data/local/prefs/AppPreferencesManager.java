@@ -1,4 +1,4 @@
-package app.quranhub.util;
+package app.quranhub.data.local.prefs;
 
 import android.content.Context;
 
@@ -6,12 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import app.quranhub.data.Constants;
+import app.quranhub.util.LocaleUtils;
+import app.quranhub.util.SharedPrefsUtils;
 
 
-public final class AppPreferencesUtils {
+public final class AppPreferencesManager {
 
-
-    private AppPreferencesUtils() { /* prevent instantiation */}
+    private AppPreferencesManager() { /* prevent instantiation */}
 
     private static final String PREF_NIGHT_MODE_SETTING = "PREF_NIGHT_MODE_SETTING";
     private static final String PREF_APP_LANG_SETTING = "PREF_APP_LANG_SETTING";
@@ -22,6 +23,7 @@ public final class AppPreferencesUtils {
     private static final String PREF_QURAN_TRANSLATION_LANGUAGE = "PREF_QURAN_TRANSLATION_LANGUAGE";
     private static final String PREF_QURAN_TRANSLATION_BOOK = "PREF_QURAN_TRANSLATION_BOOK";
     private static final String PREF_RECITER_SHEIKH_SETTING = "PREF_RECITER_SHEIKH_SETTING";
+    private static final String PREF_IS_DB_INITIALIZED = "PREF_IS_DB_INITIALIZED";
 
     public static boolean getNightModeSetting(@NonNull Context context) {
         return SharedPrefsUtils.getBoolean(context, PREF_NIGHT_MODE_SETTING, false);
@@ -145,4 +147,11 @@ public final class AppPreferencesUtils {
         SharedPrefsUtils.saveString(context, "book_db_name", dbName);
     }
 
+    public static boolean isDbInitialized(@NonNull Context context) {
+        return SharedPrefsUtils.getBoolean(context, PREF_IS_DB_INITIALIZED, false);
+    }
+
+    public static void persistDbInitialized(@NonNull Context context, boolean isInitialized) {
+        SharedPrefsUtils.saveBoolean(context, PREF_IS_DB_INITIALIZED, isInitialized);
+    }
 }

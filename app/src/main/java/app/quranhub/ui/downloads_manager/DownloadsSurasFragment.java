@@ -15,10 +15,10 @@ import java.util.List;
 import app.quranhub.R;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.ReciterRecitation;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.data.service.QuranAudioDownloaderService;
 import app.quranhub.ui.downloads_manager.dialogs.DeleteConfirmationDialogFragment;
 import app.quranhub.ui.downloads_manager.model.DisplayableDownload;
-import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.QuranAudioDeleteUtils;
 
 public class DownloadsSurasFragment extends BaseDownloadsFragment
@@ -128,9 +128,9 @@ public class DownloadsSurasFragment extends BaseDownloadsFragment
                             .insert(new ReciterRecitation(recitationId, reciterId));
                 }
 
-                int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(requireContext());
+                int recitationIdPreference = AppPreferencesManager.getRecitationSetting(requireContext());
                 if (recitationIdPreference == recitationId) {
-                    AppPreferencesUtils.persistReciterSheikhSetting(requireContext(), reciterId);
+                    AppPreferencesManager.persistReciterSheikhSetting(requireContext(), reciterId);
                 }
 
                 return null;

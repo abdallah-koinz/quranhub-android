@@ -39,6 +39,7 @@ import app.quranhub.data.local.entity.Aya;
 import app.quranhub.data.local.entity.AyaBookmark;
 import app.quranhub.data.local.entity.BookmarkType;
 import app.quranhub.data.local.entity.Note;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.data.model.ReciterModel;
 import app.quranhub.ui.downloads_manager.dialogs.AudioDownloadAmountDialogFragment;
 import app.quranhub.ui.downloads_manager.dialogs.QuranRecitersDialogFragment;
@@ -49,7 +50,6 @@ import app.quranhub.ui.mushaf.model.BookmarkModel;
 import app.quranhub.ui.mushaf.presenter.QuranPagePresenter;
 import app.quranhub.ui.mushaf.presenter.QuranPagePresenterImp;
 import app.quranhub.ui.mushaf.view.QuranPageView;
-import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.FragmentUtils;
 import app.quranhub.util.GlideApp;
 import app.quranhub.util.ImageUtil;
@@ -168,7 +168,7 @@ public class QuranPageFragment extends Fragment
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setParentFragment();
-        recitationId = AppPreferencesUtils.getRecitationSetting(requireContext());
+        recitationId = AppPreferencesManager.getRecitationSetting(requireContext());
         getCurrentPageAyas();
         containerScrollView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -812,7 +812,7 @@ public class QuranPageFragment extends Fragment
         mushafFragment.togglePauseState(false);
         ayaAudioDownloaded = false;
 
-        String reciterId = AppPreferencesUtils.getReciterSheikhSetting(requireContext());
+        String reciterId = AppPreferencesManager.getReciterSheikhSetting(requireContext());
         if (reciterId != null) {
             openDownloadAmountDialog(reciterId);
         } else {

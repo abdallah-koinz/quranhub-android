@@ -11,6 +11,7 @@ import java.util.List;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.QuranAudio;
 import app.quranhub.data.local.entity.Reciter;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 
 public final class QuranAudioDeleteUtils {
 
@@ -40,9 +41,9 @@ public final class QuranAudioDeleteUtils {
                 userDatabase.getReciterDao().deleteAll(reciters.toArray(new Reciter[0]));
 
                 // 3. delete reciter preference if same recitation
-                int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(context);
+                int recitationIdPreference = AppPreferencesManager.getRecitationSetting(context);
                 if (recitationIdPreference == recitationId) {
-                    AppPreferencesUtils.resetReciterSheikhSetting(context);
+                    AppPreferencesManager.resetReciterSheikhSetting(context);
                 }
 
                 return null;

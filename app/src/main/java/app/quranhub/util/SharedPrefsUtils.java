@@ -8,12 +8,11 @@ import androidx.annotation.NonNull;
 
 public final class SharedPrefsUtils {
 
-    private SharedPrefsUtils() { /* prevent instantiation */ }
-
     private static final String TAG = SharedPrefsUtils.class.getSimpleName();
 
-    private static final String PREF_FILE_NAME = "mushaf_prefs";
+    private SharedPrefsUtils() { /* prevent instantiation */ }
 
+    private static final String PREF_FILE_NAME = "mushaf_prefs";
 
     public static void saveString(@NonNull Context context, @NonNull String key, @NonNull String value) {
         if (context != null) {
@@ -102,5 +101,4 @@ public final class SharedPrefsUtils {
     private static SharedPreferences getSharedPreference(@NonNull Context context) {
         return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     }
-
 }

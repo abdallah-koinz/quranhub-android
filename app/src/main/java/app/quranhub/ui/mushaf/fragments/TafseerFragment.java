@@ -29,6 +29,7 @@ import java.util.List;
 import app.quranhub.R;
 import app.quranhub.data.Constants;
 import app.quranhub.data.local.entity.TranslationBook;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.ui.common.dialogs.OptionsListDialogFragment;
 import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.mushaf.adapter.TafseerAdapter;
@@ -36,7 +37,6 @@ import app.quranhub.ui.mushaf.dialogs.OptionDialog;
 import app.quranhub.ui.mushaf.dialogs.TranslationsDialogFragment;
 import app.quranhub.ui.mushaf.model.TafseerModel;
 import app.quranhub.ui.mushaf.viewmodel.TafseerViewModel;
-import app.quranhub.util.AppPreferencesUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -222,8 +222,8 @@ public class TafseerFragment extends Fragment implements OptionDialog.ItemClickL
     }
 
     private void getArgumentsData() {
-        currentTafsserId = AppPreferencesUtils.getQuranTranslationBook(requireActivity());
-        currentTafseerLang = AppPreferencesUtils.getQuranTranslationLanguage(requireActivity());
+        currentTafsserId = AppPreferencesManager.getQuranTranslationBook(requireActivity());
+        currentTafseerLang = AppPreferencesManager.getQuranTranslationLanguage(requireActivity());
         if (getArguments() != null) {
             suraName = getArguments().getString(ARG_SURA_NAME);
             suraNumber = getArguments().getInt(ARG_SURA_NUMBER);
@@ -234,7 +234,7 @@ public class TafseerFragment extends Fragment implements OptionDialog.ItemClickL
             suraTv.setText(suraName);
         }
         int currentTranslationLanguageIndex = Constants.Language.CODES.indexOf(
-                AppPreferencesUtils.getQuranTranslationLanguage(requireContext()));
+                AppPreferencesManager.getQuranTranslationLanguage(requireContext()));
         langTv.setText(
                 getString(Constants.Language.NAMES_STR_IDS[currentTranslationLanguageIndex]));
     }
@@ -251,7 +251,7 @@ public class TafseerFragment extends Fragment implements OptionDialog.ItemClickL
 
     @OnClick(R.id.filter_book_btn)
     public void onOpenBooksFilter() {
-        String transLang = AppPreferencesUtils.getQuranTranslationLanguage(requireContext());
+        String transLang = AppPreferencesManager.getQuranTranslationLanguage(requireContext());
         TranslationsDialogFragment translationsDialog = TranslationsDialogFragment.newInstance(
                 transLang, this);
         translationsDialog.show(getParentFragmentManager(), "trans_book_dialog");
@@ -260,7 +260,7 @@ public class TafseerFragment extends Fragment implements OptionDialog.ItemClickL
     @OnClick(R.id.filter_lang_btn)
     public void onOpenLangFilter() {
         int currentTranslationLanguageIndex = Constants.Language.CODES.indexOf(
-                AppPreferencesUtils.getQuranTranslationLanguage(requireContext()));
+                AppPreferencesManager.getQuranTranslationLanguage(requireContext()));
         OptionsListDialogFragment translationLangDialog = OptionsListDialogFragment.getInstance(
                 getString(R.string.translation_lang_setting_dialog_title),
                 Constants.Language.NAMES_STR_IDS, currentTranslationLanguageIndex
@@ -285,7 +285,7 @@ public class TafseerFragment extends Fragment implements OptionDialog.ItemClickL
     @Override
     public void onItemSelected(int requestCode, int itemIndex) {
         String langCode = Constants.Language.CODES.get(itemIndex);
-        AppPreferencesUtils.persistQuranTranslationLanguage(requireContext(), langCode);
+        AppPreferencesManager.persistQuranTranslationLanguage(requireContext(), langCode);
         currentTafseerLang = langCode;
         langTv.setText(getString(Constants.Language.NAMES_STR_IDS[itemIndex]));
     }

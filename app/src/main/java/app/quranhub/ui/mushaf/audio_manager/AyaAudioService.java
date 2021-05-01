@@ -28,12 +28,12 @@ import java.util.Objects;
 import app.quranhub.R;
 import app.quranhub.data.Constants;
 import app.quranhub.data.local.db.UserDatabase;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.ui.base.BaseService;
 import app.quranhub.ui.main.MainActivity;
 import app.quranhub.ui.mushaf.model.AyaIdInfo;
 import app.quranhub.ui.mushaf.model.RepeatModel;
 import app.quranhub.ui.mushaf.model.SuraVersesNumber;
-import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.LocaleUtils;
 import app.quranhub.util.SharedPrefsUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -448,8 +448,8 @@ public class AyaAudioService extends BaseService
         currentAyaRepeatNumber = 1;
         stopAudio();
         stopAyaAudioDelay();
-        String sheikhId = AppPreferencesUtils.getReciterSheikhSetting(this);
-        int recitationId = AppPreferencesUtils.getRecitationSetting(this);
+        String sheikhId = AppPreferencesManager.getReciterSheikhSetting(this);
+        int recitationId = AppPreferencesManager.getRecitationSetting(this);
         userDatabase.getQuranAudioDao()
                 .getAyaAudioPath(ayaId, recitationId, sheikhId)
                 .subscribeOn(Schedulers.io())

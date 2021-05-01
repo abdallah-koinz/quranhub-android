@@ -13,6 +13,7 @@ import com.mikepenz.materialdrawer.Drawer;
 
 import app.quranhub.R;
 import app.quranhub.data.Constants;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.ui.base.BaseActivity;
 import app.quranhub.ui.common.interfaces.ToolbarActionsListener;
 import app.quranhub.ui.downloads_manager.DownloadsManagerActivity;
@@ -31,7 +32,6 @@ import app.quranhub.ui.mushaf.fragments.TopicAyasFragment;
 import app.quranhub.ui.mushaf.listener.QuranNavigationCallbacks;
 import app.quranhub.ui.mushaf.model.TopicCategory;
 import app.quranhub.ui.settings.SettingsActivity;
-import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.DrawerUtils;
 import app.quranhub.util.SharedPrefsUtils;
 
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
 
         // Redirect to `FirstTimeWizardActivity` if not already done
-        if (!AppPreferencesUtils.isFirstTimeWizardDone(this)) {
+        if (!AppPreferencesManager.isFirstTimeWizardDone(this)) {
             Intent intent = new Intent(this, FirstTimeWizardActivity.class);
             startActivity(intent);
             finish();
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity
         if ((getIntent().getExtras() != null && getIntent().getExtras().getBoolean(AyaAudioService.FROM_NOTIFICATION)) || SharedPrefsUtils.getBoolean(this, AyaAudioService.SERVICE_RUNNING, false)) {
             int ayaId = SharedPrefsUtils.getInteger(this, AyaAudioService.AYA_ID_KEY, 1);
             mushafFragment = MushafFragment.newNotificationInstance(ayaId);
-        } else if (AppPreferencesUtils.getLastReadPageSetting(this)) {
+        } else if (AppPreferencesManager.getLastReadPageSetting(this)) {
             int pageNumber = Constants.Quran.NUM_OF_PAGES - SharedPrefsUtils.getInteger(this
                     , "last_open_page", Constants.Quran.NUM_OF_PAGES - 1);
             mushafFragment = MushafFragment.newInstance(pageNumber);

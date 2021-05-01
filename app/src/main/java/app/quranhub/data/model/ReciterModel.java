@@ -12,7 +12,7 @@ import com.google.firebase.firestore.PropertyName;
 import java.util.Map;
 
 import app.quranhub.data.Constants;
-import app.quranhub.util.AppPreferencesUtils;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 
 public class ReciterModel {
 
@@ -79,7 +79,7 @@ public class ReciterModel {
     public String getLocalizedName(@NonNull Context context) {
         if (localizedName != null) return localizedName;
 
-        final String appLangCode = AppPreferencesUtils.getAppLangSetting(context);
+        final String appLangCode = AppPreferencesManager.getAppLangSetting(context);
         if (name.containsKey(appLangCode))
             return name.get(appLangCode);
         else return name.get(Constants.Language.DEFAULT_APP_LANGUAGE);
@@ -98,7 +98,7 @@ public class ReciterModel {
     public String getLocalizedNationality(@NonNull Context context) {
         if (localizedNationality != null) return localizedNationality;
 
-        final String appLangCode = AppPreferencesUtils.getAppLangSetting(context);
+        final String appLangCode = AppPreferencesManager.getAppLangSetting(context);
         if (nationality.containsKey(appLangCode))
             return nationality.get(appLangCode);
         else return nationality.get(Constants.Language.DEFAULT_APP_LANGUAGE);

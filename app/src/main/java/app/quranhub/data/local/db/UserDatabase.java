@@ -26,12 +26,15 @@ import app.quranhub.data.local.entity.QuranAudio;
 import app.quranhub.data.local.entity.Reciter;
 import app.quranhub.data.local.entity.ReciterRecitation;
 import app.quranhub.data.local.entity.TranslationBook;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 
 
 @Database(entities = {AyaBookmark.class, BookmarkType.class, Book.class, TranslationBook.class,
         Note.class, app.quranhub.data.local.entity.Recitation.class, Reciter.class, ReciterRecitation.class,
         QuranAudio.class, AyaRecorder.class}, version = 2, exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
+
+    private static final String TAG = UserDatabase.class.getSimpleName();
 
     public static final String DATABASE_NAME = "user.db";
 
@@ -46,15 +49,19 @@ public abstract class UserDatabase extends RoomDatabase {
                             .fallbackToDestructiveMigration()
                             .addCallback(new Callback() {
                                 @Override
-                                public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                                    super.onCreate(db);
-                                    initData(db);
+                                public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                                    super.onOpen(db);
+
+                                    if (!AppPreferencesManager.isDbInitialized(context)) {
+                                        initData(db, context);
+                                    }
                                 }
 
                                 @Override
                                 public void onDestructiveMigration(@NonNull SupportSQLiteDatabase db) {
                                     super.onDestructiveMigration(db);
-                                    initData(db);
+
+                                    AppPreferencesManager.persistDbInitialized(context, false);
                                 }
                             })
                             .build();
@@ -80,9 +87,11 @@ public abstract class UserDatabase extends RoomDatabase {
 
     public abstract QuranAudioDao getQuranAudioDao();
 
-    private static void initData(@NonNull SupportSQLiteDatabase db) {
+    private static void initData(@NonNull SupportSQLiteDatabase db, @NonNull Context context) {
         initBookmarkTypes(db);
         initAvailableRecitations(db);
+
+        AppPreferencesManager.persistDbInitialized(context, true);
     }
 
     private static void initBookmarkTypes(@NonNull SupportSQLiteDatabase db) {

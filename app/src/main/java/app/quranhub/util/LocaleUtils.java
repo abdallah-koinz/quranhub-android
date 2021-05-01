@@ -12,6 +12,8 @@ import androidx.core.view.ViewCompat;
 
 import java.util.Locale;
 
+import app.quranhub.data.local.prefs.AppPreferencesManager;
+
 public final class LocaleUtils {
 
     private static final String TAG = LocaleUtils.class.getSimpleName();
@@ -45,7 +47,7 @@ public final class LocaleUtils {
 
     @NonNull
     public static Context initAppLanguage(@NonNull Context context) {
-        return setAppLanguage(context, AppPreferencesUtils.getAppLangSetting(context));
+        return setAppLanguage(context, AppPreferencesManager.getAppLangSetting(context));
     }
 
     public static String formatNumber(@NonNull String num) {

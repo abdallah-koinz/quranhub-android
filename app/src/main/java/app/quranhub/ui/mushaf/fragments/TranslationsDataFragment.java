@@ -25,6 +25,7 @@ import java.util.List;
 import app.quranhub.R;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.TranslationBook;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.data.remote.ApiClient;
 import app.quranhub.data.remote.TranslationDownloader;
 import app.quranhub.data.remote.api.TranslationsApi;
@@ -32,7 +33,6 @@ import app.quranhub.data.remote.model.TranslationsResponse;
 import app.quranhub.ui.common.interfaces.Searchable;
 import app.quranhub.ui.mushaf.adapter.TranslationsAdapter;
 import app.quranhub.ui.mushaf.model.DisplayableTranslation;
-import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.FragmentUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -134,7 +134,7 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
                 layoutManager.getOrientation());
         translationsRecyclerView.addItemDecoration(dividerItemDecoration);
         displayableTranslations = new ArrayList<>();
-        adapter = new TranslationsAdapter(displayableTranslations, AppPreferencesUtils.getQuranTranslationBook(getContext()), this);
+        adapter = new TranslationsAdapter(displayableTranslations, AppPreferencesManager.getQuranTranslationBook(getContext()), this);
         translationsRecyclerView.setAdapter(adapter);
     }
 
@@ -278,9 +278,9 @@ public class TranslationsDataFragment extends Fragment implements Searchable, Tr
     public void onTranslationClick(TranslationBook translationBook, int clickedItemIndex) {
         Log.d(TAG, "Clicked translation book: " + translationBook);
 
-        AppPreferencesUtils.persistQuranTranslationBook(getContext(), translationBook.getId());
-        AppPreferencesUtils.persistBookDbName(getActivity(), translationBook.getDatabaseName());
-        AppPreferencesUtils.persistBookName(getActivity(), translationBook.getName());
+        AppPreferencesManager.persistQuranTranslationBook(getContext(), translationBook.getId());
+        AppPreferencesManager.persistBookDbName(getActivity(), translationBook.getDatabaseName());
+        AppPreferencesManager.persistBookName(getActivity(), translationBook.getName());
         listener.onTranslationSelected(translationBook);
     }
 

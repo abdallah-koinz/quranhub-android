@@ -32,10 +32,10 @@ import app.quranhub.data.Constants;
 import app.quranhub.data.local.dao.ReciterDao;
 import app.quranhub.data.local.db.UserDatabase;
 import app.quranhub.data.local.entity.Reciter;
+import app.quranhub.data.local.prefs.AppPreferencesManager;
 import app.quranhub.data.model.ReciterModel;
 import app.quranhub.data.repository.RecitationsRepository;
 import app.quranhub.ui.common.dialogs.OptionsListAdapter;
-import app.quranhub.util.AppPreferencesUtils;
 import app.quranhub.util.DialogUtils;
 import app.quranhub.util.FragmentUtils;
 import butterknife.BindView;
@@ -332,9 +332,9 @@ public class QuranRecitersDialogFragment extends DialogFragment
                     }
 
                     // persist selected reciter as preference if recitation id matches the one in preferences
-                    int recitationIdPreference = AppPreferencesUtils.getRecitationSetting(requireContext());
+                    int recitationIdPreference = AppPreferencesManager.getRecitationSetting(requireContext());
                     if (recitationIdPreference == recitationId) {
-                        AppPreferencesUtils.persistReciterSheikhSetting(requireContext(), selectedReciterModel.getId());
+                        AppPreferencesManager.persistReciterSheikhSetting(requireContext(), selectedReciterModel.getId());
                     }
                 }
                 return null;
