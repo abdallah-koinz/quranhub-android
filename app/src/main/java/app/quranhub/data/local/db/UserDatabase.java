@@ -44,13 +44,17 @@ public abstract class UserDatabase extends RoomDatabase {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
                             UserDatabase.class, DATABASE_NAME)
                             .fallbackToDestructiveMigration()
-                            .fallbackToDestructiveMigrationOnDowngrade()
                             .addCallback(new Callback() {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
-                                    initBookmarkTypes(db);
-                                    initAvailableRecitations(db);
+                                    initData(db);
+                                }
+
+                                @Override
+                                public void onDestructiveMigration(@NonNull SupportSQLiteDatabase db) {
+                                    super.onDestructiveMigration(db);
+                                    initData(db);
                                 }
                             })
                             .build();
@@ -76,6 +80,10 @@ public abstract class UserDatabase extends RoomDatabase {
 
     public abstract QuranAudioDao getQuranAudioDao();
 
+    private static void initData(@NonNull SupportSQLiteDatabase db) {
+        initBookmarkTypes(db);
+        initAvailableRecitations(db);
+    }
 
     private static void initBookmarkTypes(@NonNull SupportSQLiteDatabase db) {
 
@@ -91,12 +99,10 @@ public abstract class UserDatabase extends RoomDatabase {
         db.execSQL(recitingType);
         db.execSQL(noteType);
         db.execSQL(memorizeType);
-
     }
 
     private static void initAvailableRecitations(@NonNull SupportSQLiteDatabase db) {
         db.execSQL("INSERT INTO Recitation VALUES (" + Constants.Recitation.HAFS_ID + ", \"حفص عن عاصم\")");
         db.execSQL("INSERT INTO Recitation VALUES (" + Constants.Recitation.WARSH_ID + ", \"ورش عن نافع\")");
     }
-
 }
