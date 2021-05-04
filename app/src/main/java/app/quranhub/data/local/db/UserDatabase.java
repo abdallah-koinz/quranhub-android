@@ -31,7 +31,7 @@ import app.quranhub.data.local.prefs.AppPreferencesManager;
 
 @Database(entities = {AyaBookmark.class, BookmarkType.class, Book.class, TranslationBook.class,
         Note.class, app.quranhub.data.local.entity.Recitation.class, Reciter.class, ReciterRecitation.class,
-        QuranAudio.class, AyaRecorder.class}, version = 2, exportSchema = false)
+        QuranAudio.class, AyaRecorder.class}, version = 3, exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
 
     private static final String TAG = UserDatabase.class.getSimpleName();
