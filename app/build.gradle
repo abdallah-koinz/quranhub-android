@@ -42,9 +42,6 @@ android {
         dataBinding true
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     bundle {
         language {
@@ -54,6 +51,9 @@ android {
             // dynamic feature APK.
             enableSplit = false
         }
+    }
+    lint {
+        abortOnError false
     }
 }
 
